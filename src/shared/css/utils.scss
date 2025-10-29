@@ -1,0 +1,107 @@
+@function deUnit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+$size--desktop: 1920;
+@mixin vw-convert-desktop($property, $pixel) {
+  @media screen and (max-width: 1920px) {
+    @if length($pixel) ==1 {
+      #{$property}: deUnit($pixel) * 100 / deUnit($size--desktop) * 1vw;
+    } @else if length($pixel) ==2 {
+      #{$property}: deUnit(nth($pixel, 1)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw
+        deUnit(nth($pixel, 2)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw;
+    } @else if length($pixel) ==3 {
+      #{$property}: deUnit(nth($pixel, 1)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw
+        deUnit(nth($pixel, 2)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw
+        deUnit(nth($pixel, 3)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw;
+    } @else if length($pixel) ==4 {
+      #{$property}: deUnit(nth($pixel, 1)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw
+        deUnit(nth($pixel, 2)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw
+        deUnit(nth($pixel, 3)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw
+        deUnit(nth($pixel, 4)) *
+        100 /
+        deUnit($size--desktop) *
+        1vw;
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    #{$property}: $pixel;
+  }
+}
+
+$size--mobile: 720;
+@mixin vw-convert-mobile($property, $pixel) {
+  @if length($pixel) ==1 {
+    #{$property}: deUnit($pixel) * 100 / deUnit($size--mobile) * 1vw;
+  } @else if length($pixel) ==2 {
+    #{$property}: deUnit(nth($pixel, 1)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw
+      deUnit(nth($pixel, 2)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw;
+  } @else if length($pixel) ==3 {
+    #{$property}: deUnit(nth($pixel, 1)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw
+      deUnit(nth($pixel, 2)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw
+      deUnit(nth($pixel, 3)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw;
+  } @else if length($pixel) ==4 {
+    #{$property}: deUnit(nth($pixel, 1)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw
+      deUnit(nth($pixel, 2)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw
+      deUnit(nth($pixel, 3)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw
+      deUnit(nth($pixel, 4)) *
+      100 /
+      deUnit($size--mobile) *
+      1vw;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 980px) {
+    @content;
+  }
+}
