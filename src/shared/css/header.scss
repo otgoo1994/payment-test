@@ -1,0 +1,38 @@
+@use "./utils";
+@use "./colors";
+
+.header {
+  @include utils.vw-convert-desktop(height, 130px);
+  @include utils.vw-convert-desktop(padding, 0 50px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .logo {
+    height: 40%;
+    width: auto;
+  }
+
+  .groupBtn {
+    display: flex;
+    @include utils.vw-convert-desktop(gap, 30px);
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      color: colors.$color-black;
+      font-weight: 600;
+      @include utils.vw-convert-desktop(font-size, 15px);
+    }
+
+    button {
+      @include utils.vw-convert-desktop(padding, 10px 30px);
+      @include utils.vw-convert-desktop(border-radius, 10px);
+      @include utils.vw-convert-desktop(font-size, 15px);
+      border: none;
+      background-color: colors.$color-brand;
+      color: colors.$color-white;
+      cursor: pointer;
+    }
+  }
+}

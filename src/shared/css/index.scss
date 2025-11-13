@@ -1,210 +1,200 @@
-.payment {
-  background-color: #ecebef;
-  min-height: 100vh;
-  min-width: "100%";
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@use "./utils";
+@use "./colors";
 
-  @include mobile {
-    padding: 0 30px;
+.container {
+  width: 70%;
+  margin: auto;
+}
+
+.home {
+  .background {
+    width: 100%;
+    height: auto;
+  }
+
+  .title {
+    text-align: center;
+    @include utils.vw-convert-desktop(font-size, 25px);
+    @include utils.vw-convert-desktop(margin, 30px 0);
+    font-weight: 600;
+    color: colors.$color-brand;
+  }
+
+  .chances {
+    display: grid;
+    @include utils.vw-convert-desktop(gap, 15px);
+    @include utils.vw-convert-desktop(margin-bottom, 100px);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .card {
+      background-color: colors.$color-brand-blurred;
+      display: flex;
+      flex-direction: column;
+      @include utils.vw-convert-desktop(padding, 25px);
+      @include utils.vw-convert-desktop(gap, 5px);
+      @include utils.vw-convert-desktop(border-radius, 20px);
+
+      .icon {
+        color: colors.$color-brand;
+        @include utils.vw-convert-desktop(width, 30px);
+        @include utils.vw-convert-desktop(height, 30px);
+      }
+
+      .card-title {
+        font-weight: 600;
+        color: colors.$color-gray;
+        @include utils.vw-convert-desktop(font-size, 18px);
+      }
+
+      span {
+        font-weight: 400;
+        color: colors.$color-gray;
+        line-height: 100%;
+      }
+    }
+  }
+}
+
+.payment {
+  background-color: colors.$color-gray-200;
+  min-height: 100vh;
+  @include utils.vw-convert-desktop(padding-top, 50px);
+  @include utils.vw-convert-desktop(padding-bottom, 50px);
+
+  &-container {
+    width: 40%;
+    margin: auto;
+  }
+
+  .selector {
+    display: flex;
+    @include utils.vw-convert-desktop(margin-top, 50px);
+    @include utils.vw-convert-desktop(margin-bottom, 50px);
+
+    .name {
+      color: colors.$color-gray;
+      width: 35%;
+    }
+
+    .option.grid {
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .option {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      @include utils.vw-convert-desktop(gap, 10px);
+
+      button {
+        @include utils.vw-convert-desktop(padding, 15px);
+        @include utils.vw-convert-desktop(border-radius, 15px);
+        background-color: colors.$color-gray-100;
+
+        p {
+          @include utils.vw-convert-desktop(font-size, 14px);
+          font-weight: 400;
+        }
+      }
+
+      button > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      &-container {
+        background-color: colors.$color-gray-200;
+        @include utils.vw-convert-desktop(padding, 20px 30px);
+        @include utils.vw-convert-desktop(border-radius, 20px);
+
+        table {
+          border-collapse: collapse;
+          width: 100%;
+
+          td {
+            border-bottom: 1px solid colors.$color-gray-400;
+            @include utils.vw-convert-desktop(padding, 10px 5px);
+
+            &:nth-child(1) {
+              width: 30%;
+              color: colors.$color-gray-cool;
+              font-weight: 300;
+            }
+
+            &:nth-child(2) {
+              color: colors.$color-black;
+              font-weight: 300;
+              text-align: left;
+            }
+          }
+
+          tr:last-child td {
+            border: none !important;
+          }
+        }
+      }
+    }
   }
 }
 
 .payment-card {
-  @include vw-convert-desktop(width, 400px);
-  @include vw-convert-desktop(padding, 10px);
-  @include vw-convert-desktop(border-radius, 35px);
-  background-color: #ffffff;
+  background-color: colors.$color-white;
+  @include utils.vw-convert-desktop(padding, 30px);
+  @include utils.vw-convert-desktop(border-radius, 50px);
 
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
-    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-
-  @include mobile {
-    width: 100%;
-    @include vw-convert-mobile(padding, 15px);
-    @include vw-convert-mobile(border-radius, 35px);
+  &-header {
+    @include utils.vw-convert-desktop(padding-bottom, 20px);
+    border-bottom: 1px solid colors.$color-gray-300;
+    &-logo {
+      width: 20%;
+      height: auto;
+    }
   }
 
-  .qr-container {
-    width: 100%;
-    height: 100%;
+  .payment-body {
+    @include utils.vw-convert-desktop(padding-top, 20px);
+    .title {
+      @include utils.vw-convert-desktop(font-size, 15px);
+    }
+
+    .description {
+      @include utils.vw-convert-desktop(font-size, 12px);
+      color: colors.$color-gray;
+    }
+  }
+
+  .payment-footer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    @include utils.vw-convert-desktop(padding, 30px);
+    @include utils.vw-convert-desktop(gap, 30px);
+    justify-content: flex-end;
 
-  .header {
-    background: linear-gradient(135deg, #f3d8ff 0%, #d8eaff 100%);
-    @include vw-convert-desktop(border-radius, 25px);
-    @include vw-convert-desktop(padding, 20px);
-    @include vw-convert-desktop(height, 120px);
-    position: relative;
-
-    @include mobile {
-      @include vw-convert-mobile(border-radius, 25px);
-      @include vw-convert-mobile(padding, 20px);
-      @include vw-convert-mobile(height, 180px);
-    }
-
-    .tag {
-      position: absolute;
-      left: 10px;
-      top: 10px;
-      background-color: #00000080;
-      @include vw-convert-desktop(border-radius, 20px);
-      @include vw-convert-desktop(font-size, 13px);
-      padding: 5px 15px;
-      color: #ffffff;
-      font-weight: 700;
-
-      @include mobile {
-        @include vw-convert-mobile(border-radius, 20px);
-        @include vw-convert-mobile(font-size, 13px);
-      }
-    }
-
-    .price {
-      position: absolute;
-      left: 10px;
-      bottom: 10px;
-      font-weight: 500;
-      @include vw-convert-desktop(font-size, 35px);
-
-      @include mobile {
-        @include vw-convert-mobile(font-size, 40px);
-      }
-
-      span {
-        @include vw-convert-desktop(font-size, 16px);
-        font-weight: 500;
-        color: #878787;
-
-        @include mobile {
-          @include vw-convert-mobile(font-size, 20px);
-        }
-      }
-    }
-  }
-
-  .payment-card-body {
-    @include vw-convert-desktop(font-size, 15px);
-
-    @include mobile {
-      @include vw-convert-mobile(font-size, 25px);
-    }
-
-    .form {
-      display: flex;
-      flex-direction: column;
-      @include vw-convert-desktop(gap, 10px);
-      @include vw-convert-desktop(margin-top, 30px);
-
-      @include mobile {
-        @include vw-convert-mobile(gap, 10px);
-        @include vw-convert-mobile(margin-top, 30px);
-      }
-
-      .input-container {
-        display: flex;
-        align-items: center;
-        border: 0.5px solid #e5e7eb;
-        @include vw-convert-desktop(border-radius, 30px);
-        @include vw-convert-desktop(padding, 0 10px);
-        @include vw-convert-desktop(padding-top, 5px);
-        background: #fff;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        width: "100%";
-
-        @include mobile {
-          @include vw-convert-mobile(border-radius, 50px);
-          @include vw-convert-mobile(padding, 20px 20px);
-          //   @include vw-convert-mobile(padding-top, 10px);
-        }
-
-        &:focus-within {
-          border-color: #a78bfa;
-        }
-
-        .input-wrapper {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-
-          label {
-            color: #9ca3af;
-            @include vw-convert-desktop(font-size, 12px);
-            @include vw-convert-desktop(margin-left, 15px);
-
-            @include mobile {
-              @include vw-convert-mobile(font-size, 18px);
-              @include vw-convert-mobile(margin-left, 12px);
-            }
-          }
-
-          input {
-            border: none;
-            outline: none;
-            @include vw-convert-desktop(font-size, 15px);
-            font-weight: 600;
-            color: #111827;
-            background: transparent;
-
-            @include mobile {
-              @include vw-convert-mobile(font-size, 20px);
-            }
-          }
-        }
-      }
-
-      input {
-        @include vw-convert-desktop(padding, 12px 15px);
-        @include vw-convert-desktop(border-radius, 10px);
-        border-width: 0.1px;
-        border-color: #d9d9d9;
-        outline: #d9d9d9;
-
-        &:focus {
-          border-width: 0.1px;
-          outline: none;
-        }
-
-        @include mobile {
-          @include vw-convert-mobile(padding, 10px);
-          border-width: 0.1px;
-        }
-      }
-    }
-  }
-
-  .payment-button {
-    background-color: #000000;
-    @include vw-convert-desktop(border-radius, 30px);
-    width: 100%;
-    @include vw-convert-desktop(padding, 20px);
-    @include vw-convert-desktop(margin-top, 20px);
-    @include vw-convert-desktop(margin-bottom, 5px);
-    color: #ffffff;
-    border: none;
-    flex-grow: 1;
-    &:focus {
+    button.continue {
+      background-color: colors.$color-blue;
+      @include utils.vw-convert-desktop(padding, 15px 50px);
+      @include utils.vw-convert-desktop(border-radius, 15px);
       border: none;
-      outline: none;
+      color: colors.$color-white;
+      cursor: pointer;
     }
 
-    &.disabled {
-      background-color: #6e6e6e;
-      width: 45%;
-    }
-
-    @include mobile {
-      @include vw-convert-mobile(border-radius, 35px);
-      width: 100%;
-      @include vw-convert-mobile(padding, 25px);
-      @include vw-convert-mobile(margin-top, 20px);
-      @include vw-convert-mobile(margin-bottom, 5px);
-      @include vw-convert-mobile(font-size, 25px);
+    button.back {
+      background-color: colors.$color-gray-cool;
+      @include utils.vw-convert-desktop(padding, 15px 50px);
+      @include utils.vw-convert-desktop(border-radius, 15px);
+      border: none;
+      color: colors.$color-white;
+      display: flex;
+      cursor: pointer;
     }
   }
+}
+
+.divider {
+  background-color: colors.$color-gray-200;
+  width: 100%;
+  height: 1px;
 }
