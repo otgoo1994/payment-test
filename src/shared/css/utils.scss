@@ -12,7 +12,7 @@
 $size--desktop: 1920;
 
 @mixin vw-convert-desktop($property, $pixel) {
-  @media screen and (max-width: 1920px) {
+  @media screen and (min-width: 980px) {
     @if list.length($pixel) == 1 {
       #{$property}: math.div(deUnit($pixel) * 100, deUnit($size--desktop)) *
         1vw;
@@ -49,9 +49,9 @@ $size--desktop: 1920;
     }
   }
 
-  @media screen and (min-width: 1920px) {
-    #{$property}: $pixel;
-  }
+  // @media screen and (min-width: 1920px) {
+  //   #{$property}: $pixel;
+  // }
 }
 
 // --------------------

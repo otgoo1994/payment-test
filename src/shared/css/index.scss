@@ -74,6 +74,10 @@
     .name {
       color: colors.$color-gray;
       width: 35%;
+
+      p {
+        @include utils.vw-convert-desktop(font-size, 13px);
+      }
     }
 
     .option.grid {
@@ -117,6 +121,7 @@
           td {
             border-bottom: 1px solid colors.$color-gray-400;
             @include utils.vw-convert-desktop(padding, 10px 5px);
+            @include utils.vw-convert-desktop(font-size, 12px);
 
             &:nth-child(1) {
               width: 30%;
@@ -135,6 +140,13 @@
             border: none !important;
           }
         }
+      }
+
+      .mantine-TextInput-input {
+        @include utils.vw-convert-desktop(border-radius, 18px);
+        @include utils.vw-convert-desktop(padding, 25px 20px);
+        font-family: "Geologica", sans-serif;
+        background-color: colors.$color-gray-100;
       }
     }
   }

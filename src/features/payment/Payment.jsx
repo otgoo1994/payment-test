@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Stepper, Group, Radio, Stack, Text } from "@mantine/core";
 import { PaymentCard } from "@/shared/components";
+import { TrainingRegister } from "./TrainingRegister";
+import { UserRegister } from "./UserRegister";
 
 export const Payment = () => {
   const [active, setActive] = useState(0);
@@ -60,31 +62,25 @@ export const Payment = () => {
     },
   ];
 
-  const getSelectedSchedule = (value) => {
-    const result = schedules.find((item) => item.value === value);
-    return result.label;
-  };
-  const getSelectedType = (value) => {
-    const result = types.find((item) => item.value === value);
-    return result.label;
-  };
-  const getSelectedGroup = (value, type) => {
-    const result = ageGroups.find((item) => item.value === value);
-    return result.price.toLocaleString();
-  };
-
   const nextStep = () =>
     setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
 
-  const handleCallBack = (direction) => {
-    if (direction === "back") {
+  const handleTrainingRegisterCallBack = ({ type, group, time }) => {
+    setSelectedAgeGroup(group);
+    setSelectedTime(time);
+    setSelectedType(type);
+    nextStep();
+  };
+
+  const handleUserRegisterCallBack = (formValues) => {
+    if (!formValues) {
       prevStep();
       return;
     }
 
-    nextStep();
+    console.log(formValues);
   };
 
   return (
@@ -96,79 +92,13 @@ export const Payment = () => {
               <PaymentCard
                 title="BARCELONA - MONGOLIA"
                 description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
-                onCallBack={handleCallBack}
               >
-                <div className="selector">
-                  <div className="name">
-                    <p>Сургалтын мэдээлэл</p>
-                  </div>
-                  <div className="option">
-                    {types.map((item) => (
-                      <Radio.Card
-                        radius="md"
-                        value={item.value}
-                        key={item.value}
-                        checked={selectedType === item.value}
-                        onClick={() => setSelectedType(item.value)}
-                      >
-                        <Group wrap="nowrap" align="flex-start">
-                          <div>
-                            <Text>{item.label}</Text>
-                          </div>
-                          <Radio.Indicator />
-                        </Group>
-                      </Radio.Card>
-                    ))}
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="selector">
-                  <div className="name">
-                    <p>Насны ангилал</p>
-                  </div>
-                  <div className="option">
-                    {ageGroups.map((item) => (
-                      <Radio.Card
-                        radius="md"
-                        value={item.value}
-                        key={item.value}
-                        checked={selectedAgeGroup === item.value}
-                        onClick={() => setSelectedAgeGroup(item.value)}
-                      >
-                        <Group wrap="nowrap" align="flex-start">
-                          <div>
-                            <Text>{item.label}</Text>
-                          </div>
-                          <Radio.Indicator />
-                        </Group>
-                      </Radio.Card>
-                    ))}
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="selector">
-                  <div className="name">
-                    <p>Цагийн сонголт</p>
-                  </div>
-                  <div className="option grid">
-                    {schedules.map((item) => (
-                      <Radio.Card
-                        radius="md"
-                        value={item.value}
-                        key={item.value}
-                        checked={selectedTime === item.value}
-                        onClick={() => setSelectedTime(item.value)}
-                      >
-                        <Group wrap="nowrap" align="flex-start">
-                          <div>
-                            <Text>{item.label}</Text>
-                          </div>
-                          <Radio.Indicator />
-                        </Group>
-                      </Radio.Card>
-                    ))}
-                  </div>
-                </div>
+                <TrainingRegister
+                  schedules={schedules}
+                  ageGroups={ageGroups}
+                  types={types}
+                  onCallBack={handleTrainingRegisterCallBack}
+                />
               </PaymentCard>
             </div>
           </Stepper.Step>
@@ -177,88 +107,16 @@ export const Payment = () => {
               <PaymentCard
                 title="BARCELONA - MONGOLIA"
                 description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
-                onCallBack={handleCallBack}
               >
-                <div className="selector">
-                  <div className="name">
-                    <p>Сургалтын мэдээлэл</p>
-                  </div>
-                  <div className="option">
-                    <div className="option-container">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <td>Төрөл</td>
-                            <td>{getSelectedType(selectedType)}</td>
-                          </tr>
-                          <tr>
-                            <td>Нас</td>
-                            <td>{selectedAgeGroup} нас</td>
-                          </tr>
-                          <tr>
-                            <td>Цаг</td>
-                            <td>{getSelectedSchedule(selectedTime)}</td>
-                          </tr>
-                          <tr>
-                            <td>Төлбөр</td>
-                            <td>
-                              {getSelectedGroup(selectedAgeGroup)}₮ /1 сарын
-                              төлбөр/
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="selector">
-                  <div className="name">
-                    <p>Асран хамгаалагч</p>
-                  </div>
-                  <div className="option">
-                    {ageGroups.map((item) => (
-                      <Radio.Card
-                        radius="md"
-                        value={item.value}
-                        key={item.value}
-                        checked={selectedAgeGroup === item.value}
-                        onClick={() => setSelectedAgeGroup(item.value)}
-                      >
-                        <Group wrap="nowrap" align="flex-start">
-                          <div>
-                            <Text>{item.label}</Text>
-                          </div>
-                          <Radio.Indicator />
-                        </Group>
-                      </Radio.Card>
-                    ))}
-                  </div>
-                </div>
-                <div className="divider" />
-                <div className="selector">
-                  <div className="name">
-                    <p>Сурагч</p>
-                  </div>
-                  <div className="option grid">
-                    {schedules.map((item) => (
-                      <Radio.Card
-                        radius="md"
-                        value={item.value}
-                        key={item.value}
-                        checked={selectedTime === item.value}
-                        onClick={() => setSelectedTime(item.value)}
-                      >
-                        <Group wrap="nowrap" align="flex-start">
-                          <div>
-                            <Text>{item.label}</Text>
-                          </div>
-                          <Radio.Indicator />
-                        </Group>
-                      </Radio.Card>
-                    ))}
-                  </div>
-                </div>
+                <UserRegister
+                  schedules={schedules}
+                  ageGroups={ageGroups}
+                  types={types}
+                  schedule={selectedTime}
+                  type={selectedType}
+                  group={selectedAgeGroup}
+                  onCallBack={handleUserRegisterCallBack}
+                />
               </PaymentCard>
             </div>
           </Stepper.Step>
