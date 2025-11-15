@@ -3,12 +3,15 @@ import { Stepper, Group, Radio, Stack, Text } from "@mantine/core";
 import { PaymentCard } from "@/shared/components";
 import { TrainingRegister } from "./TrainingRegister";
 import { UserRegister } from "./UserRegister";
+import { PaymentInfo } from "./PaymentInfo";
+import { SuccessPayment } from "./SuccessPayment";
 
 export const Payment = () => {
   const [active, setActive] = useState(0);
   const [selectedType, setSelectedType] = useState("football");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("11-13");
   const [selectedTime, setSelectedTime] = useState("10:00");
+  const [userInfo, setUserInfo] = useState(null);
 
   const schedules = [
     {
@@ -80,13 +83,23 @@ export const Payment = () => {
       return;
     }
 
-    console.log(formValues);
+    setUserInfo(formValues);
+    nextStep();
+  };
+
+  const handlePaymentCallBack = (type) => {
+    if (!type) {
+      prevStep();
+      return;
+    }
+
+    nextStep();
   };
 
   return (
     <section className="payment">
       <div className="payment-container">
-        <Stepper active={active} onStepClick={setActive}>
+        <Stepper active={active}>
           <Stepper.Step label="" description="Сургалтын бүртгэл">
             <div style={{ marginTop: 50 }}>
               <PaymentCard
@@ -121,10 +134,40 @@ export const Payment = () => {
             </div>
           </Stepper.Step>
           <Stepper.Step label="" description="Төлбөр төлөлт">
-            step 3
+            <div style={{ marginTop: 50 }}>
+              <PaymentCard
+                title="BARCELONA - MONGOLIA"
+                description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
+              >
+                <PaymentInfo
+                  schedules={schedules}
+                  ageGroups={ageGroups}
+                  types={types}
+                  schedule={selectedTime}
+                  type={selectedType}
+                  group={selectedAgeGroup}
+                  userInfo={userInfo}
+                  onCallBack={handlePaymentCallBack}
+                />
+              </PaymentCard>
+            </div>
           </Stepper.Step>
           <Stepper.Completed>
-            Completed, click back button to get to previous step
+            <div style={{ marginTop: 50 }}>
+              <PaymentCard
+                title="BARCELONA - MONGOLIA"
+                description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
+              >
+                <SuccessPayment
+                  schedules={schedules}
+                  ageGroups={ageGroups}
+                  types={types}
+                  schedule={selectedTime}
+                  type={selectedType}
+                  group={selectedAgeGroup}
+                />
+              </PaymentCard>
+            </div>
           </Stepper.Completed>
         </Stepper>
       </div>

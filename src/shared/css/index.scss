@@ -66,6 +66,56 @@
     margin: auto;
   }
 
+  .price-container {
+    background-color: colors.$color-blue;
+    @include utils.vw-convert-desktop(border-radius, 20px);
+    @include utils.vw-convert-desktop(padding, 20px);
+    color: colors.$color-white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .succeedContainer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    @include utils.vw-convert-desktop(padding, 50px 0px);
+    @include utils.vw-convert-desktop(gap, 6px);
+    justify-content: center;
+    align-items: center;
+
+    .icon-container {
+      background-color: rgba($color: #5095d7, $alpha: 0.1);
+      border-radius: 50%;
+      @include utils.vw-convert-desktop(width, 100px);
+      @include utils.vw-convert-desktop(margin-bottom, 40px);
+      aspect-ratio: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg {
+        width: 40%;
+        height: 40%;
+      }
+    }
+
+    p {
+      text-align: center;
+      color: colors.$color-blue;
+    }
+
+    .succeedTitle {
+      @include utils.vw-convert-desktop(font-size, 18px);
+      font-weight: 500;
+    }
+    .succeedSubTitle {
+      @include utils.vw-convert-desktop(font-size, 15px);
+    }
+  }
+
   .selector {
     display: flex;
     @include utils.vw-convert-desktop(margin-top, 50px);
@@ -92,7 +142,8 @@
       flex-direction: column;
       @include utils.vw-convert-desktop(gap, 10px);
 
-      button {
+      button,
+      .mantine-RadioCard-card {
         @include utils.vw-convert-desktop(padding, 15px);
         @include utils.vw-convert-desktop(border-radius, 15px);
         background-color: colors.$color-gray-100;
@@ -103,7 +154,8 @@
         }
       }
 
-      button > div {
+      button > div,
+      .mantine-RadioCard-card > div {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -140,6 +192,18 @@
             border: none !important;
           }
         }
+        table.payment-info-table {
+          td {
+            &:nth-child(1) {
+              width: 50%;
+            }
+
+            &:nth-child(2) {
+              color: colors.$color-black;
+              text-align: right;
+            }
+          }
+        }
       }
 
       .mantine-TextInput-input {
@@ -147,6 +211,13 @@
         @include utils.vw-convert-desktop(padding, 25px 20px);
         font-family: "Geologica", sans-serif;
         background-color: colors.$color-gray-100;
+      }
+
+      .qr-display {
+        @include utils.vw-convert-desktop(padding, 50px);
+        display: flex;
+        justify-content: center !important;
+        align-items: center;
       }
     }
   }
@@ -181,7 +252,7 @@
   .payment-footer {
     display: flex;
     @include utils.vw-convert-desktop(padding, 30px);
-    @include utils.vw-convert-desktop(gap, 30px);
+    @include utils.vw-convert-desktop(gap, 10px);
     justify-content: flex-end;
 
     button.continue {
@@ -209,4 +280,20 @@
   background-color: colors.$color-gray-200;
   width: 100%;
   height: 1px;
+}
+
+.mantine-Stepper-steps {
+  .mantine-Stepper-stepIcon {
+    @include utils.vw-convert-desktop(width, 50px);
+    @include utils.vw-convert-desktop(height, 50px);
+    @include utils.vw-convert-desktop(font-size, 12px);
+  }
+
+  .mantine-Stepper-stepDescription {
+    @include utils.vw-convert-desktop(font-size, 15px);
+  }
+
+  .mantine-Stepper-separator {
+    @include utils.vw-convert-desktop(height, 2px);
+  }
 }
