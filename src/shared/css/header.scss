@@ -8,6 +8,11 @@
   align-items: center;
   justify-content: space-between;
 
+  @include utils.mobile {
+    @include utils.vw-convert-mobile(height, 130px);
+    @include utils.vw-convert-mobile(padding, 0 50px);
+  }
+
   .logo {
     height: 40%;
     width: auto;
@@ -18,11 +23,19 @@
     @include utils.vw-convert-desktop(gap, 30px);
     align-items: center;
 
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(gap, 30px);
+    }
+
     a {
       text-decoration: none;
       color: colors.$color-black;
       font-weight: 600;
       @include utils.vw-convert-desktop(font-size, 15px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 15px);
+      }
     }
 
     button {
@@ -33,6 +46,12 @@
       background-color: colors.$color-brand;
       color: colors.$color-white;
       cursor: pointer;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(padding, 10px 30px);
+        @include utils.vw-convert-mobile(border-radius, 10px);
+        @include utils.vw-convert-mobile(font-size, 15px);
+      }
     }
   }
 }

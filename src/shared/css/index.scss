@@ -4,6 +4,9 @@
 .container {
   width: 70%;
   margin: auto;
+  @include utils.mobile {
+    width: 90%;
+  }
 }
 
 .home {
@@ -34,6 +37,7 @@
     @include utils.mobile {
       @include utils.vw-convert-mobile(gap, 15px);
       @include utils.vw-convert-mobile(margin-bottom, 100px);
+      grid-template-columns: 1fr 1fr;
     }
 
     .card {
