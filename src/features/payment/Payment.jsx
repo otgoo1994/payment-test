@@ -101,73 +101,65 @@ export const Payment = () => {
       <div className="payment-container">
         <Stepper active={active}>
           <Stepper.Step label="" description="Сургалтын бүртгэл">
-            <div style={{ marginTop: 50 }}>
-              <PaymentCard
-                title="BARCELONA - MONGOLIA"
-                description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
-              >
-                <TrainingRegister
-                  schedules={schedules}
-                  ageGroups={ageGroups}
-                  types={types}
-                  onCallBack={handleTrainingRegisterCallBack}
-                />
-              </PaymentCard>
-            </div>
+            <PaymentCard
+              title="BARCELONA - MONGOLIA"
+              description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
+            >
+              <TrainingRegister
+                schedules={schedules}
+                ageGroups={ageGroups}
+                types={types}
+                onCallBack={handleTrainingRegisterCallBack}
+              />
+            </PaymentCard>
           </Stepper.Step>
           <Stepper.Step label="" description="Хэрэглэгчийн бүртгэл">
-            <div style={{ marginTop: 50 }}>
-              <PaymentCard
-                title="BARCELONA - MONGOLIA"
-                description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
-              >
-                <UserRegister
-                  schedules={schedules}
-                  ageGroups={ageGroups}
-                  types={types}
-                  schedule={selectedTime}
-                  type={selectedType}
-                  group={selectedAgeGroup}
-                  onCallBack={handleUserRegisterCallBack}
-                />
-              </PaymentCard>
-            </div>
+            <PaymentCard
+              title="BARCELONA - MONGOLIA"
+              description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
+            >
+              <UserRegister
+                schedules={schedules}
+                ageGroups={ageGroups}
+                types={types}
+                schedule={selectedTime}
+                type={selectedType}
+                group={selectedAgeGroup}
+                onCallBack={handleUserRegisterCallBack}
+              />
+            </PaymentCard>
           </Stepper.Step>
           <Stepper.Step label="" description="Төлбөр төлөлт">
-            <div style={{ marginTop: 50 }}>
-              <PaymentCard
-                title="BARCELONA - MONGOLIA"
-                description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
-              >
-                <PaymentInfo
-                  schedules={schedules}
-                  ageGroups={ageGroups}
-                  types={types}
-                  schedule={selectedTime}
-                  type={selectedType}
-                  group={selectedAgeGroup}
-                  userInfo={userInfo}
-                  onCallBack={handlePaymentCallBack}
-                />
-              </PaymentCard>
-            </div>
+            <PaymentCard
+              title="BARCELONA - MONGOLIA"
+              description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
+            >
+              <PaymentInfo
+                schedules={schedules}
+                ageGroups={ageGroups}
+                types={types}
+                schedule={selectedTime}
+                type={selectedType}
+                group={selectedAgeGroup}
+                userInfo={userInfo}
+                onCallBack={handlePaymentCallBack}
+              />
+            </PaymentCard>
           </Stepper.Step>
           <Stepper.Completed>
-            <div style={{ marginTop: 50 }}>
-              <PaymentCard
-                title="BARCELONA - MONGOLIA"
-                description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
-              >
-                <SuccessPayment
-                  schedules={schedules}
-                  ageGroups={ageGroups}
-                  types={types}
-                  schedule={selectedTime}
-                  type={selectedType}
-                  group={selectedAgeGroup}
-                />
-              </PaymentCard>
-            </div>
+            <PaymentCard
+              title="BARCELONA - MONGOLIA"
+              description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
+            >
+              <SuccessPayment
+                schedules={schedules}
+                ageGroups={ageGroups}
+                types={types}
+                schedule={selectedTime}
+                type={selectedType}
+                group={selectedAgeGroup}
+              />
+            </PaymentCard>
           </Stepper.Completed>
         </Stepper>
       </div>

@@ -336,11 +336,13 @@
   background-color: colors.$color-white;
   @include utils.vw-convert-desktop(padding, 30px);
   @include utils.vw-convert-desktop(border-radius, 50px);
+  @include utils.vw-convert-desktop(margin-top, 30px);
 
   @include utils.mobile {
     background-color: colors.$color-white;
     @include utils.vw-convert-mobile(padding, 30px);
     @include utils.vw-convert-mobile(border-radius, 50px);
+    @include utils.vw-convert-mobile(margin-top, 30px);
   }
 
   &-header {
