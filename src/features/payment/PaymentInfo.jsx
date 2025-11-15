@@ -259,7 +259,6 @@ export const PaymentInfo = ({
                       <QRCode
                         value={"hello motherfucker"}
                         size={150}
-                        enableBackground={true}
                         style={{ borderRadius: 12, backgroundColor: "#3f444d" }}
                       />
                     </div>
