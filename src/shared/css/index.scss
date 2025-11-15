@@ -18,6 +18,11 @@
     @include utils.vw-convert-desktop(margin, 30px 0);
     font-weight: 600;
     color: colors.$color-brand;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(font-size, 25px);
+      @include utils.vw-convert-mobile(margin, 30px 0);
+    }
   }
 
   .chances {
@@ -25,6 +30,11 @@
     @include utils.vw-convert-desktop(gap, 15px);
     @include utils.vw-convert-desktop(margin-bottom, 100px);
     grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(gap, 15px);
+      @include utils.vw-convert-mobile(margin-bottom, 100px);
+    }
 
     .card {
       background-color: colors.$color-brand-blurred;
@@ -34,16 +44,31 @@
       @include utils.vw-convert-desktop(gap, 5px);
       @include utils.vw-convert-desktop(border-radius, 20px);
 
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(padding, 25px);
+        @include utils.vw-convert-mobile(gap, 5px);
+        @include utils.vw-convert-mobile(border-radius, 20px);
+      }
+
       .icon {
         color: colors.$color-brand;
         @include utils.vw-convert-desktop(width, 30px);
         @include utils.vw-convert-desktop(height, 30px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(width, 30px);
+          @include utils.vw-convert-mobile(height, 30px);
+        }
       }
 
       .card-title {
         font-weight: 600;
         color: colors.$color-gray;
         @include utils.vw-convert-desktop(font-size, 18px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 18px);
+        }
       }
 
       span {
@@ -61,9 +86,18 @@
   @include utils.vw-convert-desktop(padding-top, 50px);
   @include utils.vw-convert-desktop(padding-bottom, 50px);
 
+  @include utils.mobile {
+    @include utils.vw-convert-mobile(padding-top, 50px);
+    @include utils.vw-convert-mobile(padding-bottom, 50px);
+  }
+
   &-container {
     width: 40%;
     margin: auto;
+
+    @include utils.mobile {
+      width: 90%;
+    }
   }
 
   .price-container {
@@ -75,6 +109,11 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(border-radius, 20px);
+      @include utils.vw-convert-mobile(padding, 20px);
+    }
   }
 
   .succeedContainer {
@@ -86,6 +125,11 @@
     justify-content: center;
     align-items: center;
 
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 50px 0px);
+      @include utils.vw-convert-mobile(gap, 6px);
+    }
+
     .icon-container {
       background-color: rgba($color: #5095d7, $alpha: 0.1);
       border-radius: 50%;
@@ -95,6 +139,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(width, 100px);
+        @include utils.vw-convert-mobile(margin-bottom, 40px);
+      }
 
       svg {
         width: 40%;
@@ -110,9 +159,17 @@
     .succeedTitle {
       @include utils.vw-convert-desktop(font-size, 18px);
       font-weight: 500;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 18px);
+      }
     }
     .succeedSubTitle {
       @include utils.vw-convert-desktop(font-size, 15px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 15px);
+      }
     }
   }
 
@@ -121,12 +178,26 @@
     @include utils.vw-convert-desktop(margin-top, 50px);
     @include utils.vw-convert-desktop(margin-bottom, 50px);
 
+    @include utils.mobile {
+      flex-direction: column;
+      @include utils.vw-convert-mobile(margin-top, 50px);
+      @include utils.vw-convert-mobile(margin-bottom, 50px);
+    }
+
     .name {
       color: colors.$color-gray;
       width: 35%;
 
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(margin-bottom, 20px);
+      }
+
       p {
         @include utils.vw-convert-desktop(font-size, 13px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 18px);
+        }
       }
     }
 
@@ -142,15 +213,28 @@
       flex-direction: column;
       @include utils.vw-convert-desktop(gap, 10px);
 
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(gap, 10px);
+      }
+
       button,
       .mantine-RadioCard-card {
         @include utils.vw-convert-desktop(padding, 15px);
         @include utils.vw-convert-desktop(border-radius, 15px);
         background-color: colors.$color-gray-100;
 
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(padding, 15px);
+          @include utils.vw-convert-mobile(border-radius, 15px);
+        }
+
         p {
           @include utils.vw-convert-desktop(font-size, 14px);
           font-weight: 400;
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(font-size, 14px);
+          }
         }
       }
 
@@ -166,6 +250,11 @@
         @include utils.vw-convert-desktop(padding, 20px 30px);
         @include utils.vw-convert-desktop(border-radius, 20px);
 
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(padding, 20px 30px);
+          @include utils.vw-convert-mobile(border-radius, 20px);
+        }
+
         table {
           border-collapse: collapse;
           width: 100%;
@@ -174,6 +263,11 @@
             border-bottom: 1px solid colors.$color-gray-400;
             @include utils.vw-convert-desktop(padding, 10px 5px);
             @include utils.vw-convert-desktop(font-size, 12px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(padding, 10px 5px);
+              @include utils.vw-convert-mobile(font-size, 18px);
+            }
 
             &:nth-child(1) {
               width: 30%;
@@ -209,8 +303,15 @@
       .mantine-TextInput-input {
         @include utils.vw-convert-desktop(border-radius, 18px);
         @include utils.vw-convert-desktop(padding, 25px 20px);
+        @include utils.vw-convert-desktop(font-size, 12px);
         font-family: "Geologica", sans-serif;
         background-color: colors.$color-gray-100;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(border-radius, 18px);
+          @include utils.vw-convert-mobile(padding, 25px 20px);
+          @include utils.vw-convert-mobile(font-size, 18px);
+        }
       }
 
       .qr-display {
@@ -218,6 +319,10 @@
         display: flex;
         justify-content: center !important;
         align-items: center;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(padding, 50px);
+        }
       }
     }
   }
@@ -228,6 +333,12 @@
   @include utils.vw-convert-desktop(padding, 30px);
   @include utils.vw-convert-desktop(border-radius, 50px);
 
+  @include utils.mobile {
+    background-color: colors.$color-white;
+    @include utils.vw-convert-mobile(padding, 30px);
+    @include utils.vw-convert-mobile(border-radius, 50px);
+  }
+
   &-header {
     @include utils.vw-convert-desktop(padding-bottom, 20px);
     border-bottom: 1px solid colors.$color-gray-300;
@@ -235,17 +346,35 @@
       width: 20%;
       height: auto;
     }
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding-bottom, 20px);
+    }
   }
 
   .payment-body {
     @include utils.vw-convert-desktop(padding-top, 20px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding-top, 20px);
+      line-height: normal;
+    }
+
     .title {
       @include utils.vw-convert-desktop(font-size, 15px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 20px);
+      }
     }
 
     .description {
       @include utils.vw-convert-desktop(font-size, 12px);
       color: colors.$color-gray;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 18px);
+      }
     }
   }
 
@@ -255,6 +384,11 @@
     @include utils.vw-convert-desktop(gap, 10px);
     justify-content: flex-end;
 
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 30px);
+      @include utils.vw-convert-mobile(gap, 10px);
+    }
+
     button.continue {
       background-color: colors.$color-blue;
       @include utils.vw-convert-desktop(padding, 15px 50px);
@@ -262,6 +396,11 @@
       border: none;
       color: colors.$color-white;
       cursor: pointer;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(padding, 15px 50px);
+        @include utils.vw-convert-mobile(border-radius, 15px);
+      }
     }
 
     button.back {
@@ -272,6 +411,11 @@
       color: colors.$color-white;
       display: flex;
       cursor: pointer;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(padding, 15px 50px);
+        @include utils.vw-convert-mobile(border-radius, 15px);
+      }
     }
   }
 }
@@ -283,17 +427,49 @@
 }
 
 .mantine-Stepper-steps {
+  align-items: flex-start !important;
+
+  button.mantine-Stepper-step {
+    @include utils.mobile {
+      display: flex;
+      flex-direction: column !important;
+      width: 20% !important;
+    }
+
+    .mantine-Stepper-stepBody {
+      @include utils.mobile {
+        margin: 0;
+      }
+    }
+  }
   .mantine-Stepper-stepIcon {
     @include utils.vw-convert-desktop(width, 50px);
     @include utils.vw-convert-desktop(height, 50px);
     @include utils.vw-convert-desktop(font-size, 12px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(width, 50px);
+      @include utils.vw-convert-mobile(height, 50px);
+      @include utils.vw-convert-mobile(font-size, 20px);
+    }
   }
 
   .mantine-Stepper-stepDescription {
     @include utils.vw-convert-desktop(font-size, 15px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(font-size, 20px);
+      text-align: center;
+    }
   }
 
   .mantine-Stepper-separator {
     @include utils.vw-convert-desktop(height, 2px);
+    @include utils.vw-convert-desktop(margin-top, 25px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(height, 3px);
+      @include utils.vw-convert-mobile(margin-top, 35px);
+    }
   }
 }
