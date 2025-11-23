@@ -2,7 +2,7 @@
 @use "./colors";
 
 .container {
-  width: 70%;
+  width: 80%;
   margin: auto;
   @include utils.mobile {
     width: 90%;
@@ -15,12 +15,270 @@
     height: auto;
   }
 
+  .banner {
+    width: 100%;
+    aspect-ratio: 1440/500;
+    overflow: hidden;
+    position: relative;
+
+    @include utils.mobile {
+      aspect-ratio: 1440/700;
+    }
+
+    img.banner {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+    }
+
+    .content {
+      width: 80%;
+      height: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      @include utils.mobile {
+        width: 90%;
+      }
+
+      &-title {
+        @include utils.vw-convert-desktop(font-size, 22px);
+        line-height: normal;
+        color: colors.$color-white;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 22px);
+        }
+      }
+      &-sub-title {
+        color: colors.$color-white;
+        @include utils.vw-convert-desktop(font-size, 18px);
+        @include utils.vw-convert-desktop(margin-top, 40px);
+        line-height: normal;
+        font-family: "GeologicaThin";
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 18px);
+          @include utils.vw-convert-mobile(margin-top, 20px);
+        }
+      }
+
+      .store-container {
+        @include utils.vw-convert-desktop(margin-top, 80px);
+        @include utils.vw-convert-desktop(gap, 40px);
+        display: flex;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(margin-top, 20px);
+          @include utils.vw-convert-mobile(gap, 40px);
+        }
+
+        .logo {
+          display: flex;
+          flex-direction: column;
+          @include utils.vw-convert-desktop(gap, 15px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(gap, 15px);
+          }
+
+          &-title {
+            color: colors.$color-white;
+            font-family: "GeologicaBold";
+            @include utils.vw-convert-desktop(font-size, 18px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(font-size, 18px);
+            }
+          }
+
+          &-container {
+            @include utils.vw-convert-desktop(width, 70px);
+            @include utils.vw-convert-desktop(height, 70px);
+            @include utils.vw-convert-desktop(padding, 10px);
+            @include utils.vw-convert-desktop(border-radius, 20px);
+            background-color: colors.$color-white;
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(width, 70px);
+              @include utils.vw-convert-mobile(height, 70px);
+              @include utils.vw-convert-mobile(padding, 10px);
+              @include utils.vw-convert-mobile(border-radius, 20px);
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .app-container {
+            display: flex;
+            @include utils.vw-convert-desktop(gap, 20px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(gap, 20px);
+            }
+
+            .app-link {
+              display: flex;
+              @include utils.vw-convert-desktop(height, 70px);
+              @include utils.vw-convert-desktop(gap, 5px);
+              @include utils.vw-convert-desktop(width, 200px);
+              @include utils.vw-convert-desktop(border-radius, 20px);
+              @include utils.vw-convert-desktop(padding, 15px);
+              background-color: #ffffff20;
+              flex-direction: row;
+              align-items: center;
+
+              @include utils.mobile {
+                @include utils.vw-convert-mobile(height, 70px);
+                @include utils.vw-convert-mobile(gap, 5px);
+                @include utils.vw-convert-mobile(width, 200px);
+                @include utils.vw-convert-mobile(border-radius, 20px);
+                @include utils.vw-convert-mobile(padding, 15px);
+              }
+
+              .app-icon-container {
+                height: 100%;
+                aspect-ratio: 1;
+                svg {
+                  width: 100%;
+                  height: 100%;
+                  color: colors.$color-white;
+                }
+              }
+
+              .app-text-container {
+                height: 100%;
+                width: 100%;
+                line-height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                color: colors.$color-white;
+
+                &-title {
+                  @include utils.vw-convert-desktop(font-size, 12px);
+                  @include utils.mobile {
+                    @include utils.vw-convert-mobile(font-size, 12px);
+                  }
+                }
+                &-store {
+                  @include utils.vw-convert-desktop(font-size, 21px);
+                  @include utils.mobile {
+                    @include utils.vw-convert-mobile(font-size, 21px);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .swiper-text {
+    display: flex;
+    justify-content: space-between;
+    @include utils.vw-convert-desktop(padding, 20px 0px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 20px 0px);
+      display: none;
+    }
+
+    p {
+      line-height: normal;
+
+      &:nth-child(1) {
+        @include utils.vw-convert-desktop(font-size, 22px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 22px);
+        }
+      }
+      &:nth-child(2) {
+        @include utils.vw-convert-desktop(font-size, 18px);
+        text-align: right;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 18px);
+        }
+      }
+    }
+  }
+  .swiper-container {
+    position: relative;
+
+    .swiper {
+      .swiper-slide {
+        aspect-ratio: 1160/480;
+        // @include utils.vw-convert-desktop(border-radius, 40px);
+        // overflow: hidden;
+
+        @include utils.mobile {
+          aspect-ratio: 1160/600;
+        }
+
+        .img-container {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          @include utils.vw-convert-desktop(border-radius, 40px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(border-radius, 40px);
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+
+    .navigator {
+      position: absolute;
+      @include utils.vw-convert-desktop(bottom, 30px);
+      left: 50%;
+      z-index: 2;
+      display: flex;
+      transform: translateX(-50%);
+      @include utils.vw-convert-desktop(gap, 10px);
+
+      @include utils.mobile {
+        display: none;
+      }
+
+      button {
+        @include utils.vw-convert-desktop(border-radius, 18px);
+        @include utils.vw-convert-desktop(width, 50px);
+        border: none;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+  }
+
   .title {
-    text-align: center;
+    text-align: left;
     @include utils.vw-convert-desktop(font-size, 25px);
-    @include utils.vw-convert-desktop(margin, 30px 0);
+    @include utils.vw-convert-desktop(margin-top, 60px);
+    @include utils.vw-convert-desktop(margin-bottom, 30px);
     font-weight: 600;
-    color: colors.$color-brand;
+    color: colors.$color-black;
+    font-family: "GeologicaThin";
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(font-size, 25px);
@@ -32,53 +290,317 @@
     display: grid;
     @include utils.vw-convert-desktop(gap, 15px);
     @include utils.vw-convert-desktop(margin-bottom, 100px);
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(gap, 15px);
       @include utils.vw-convert-mobile(margin-bottom, 100px);
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
     }
 
     .card {
-      background-color: colors.$color-brand-blurred;
+      background-color: colors.$color-gray-100;
       display: flex;
       flex-direction: column;
       @include utils.vw-convert-desktop(padding, 25px);
-      @include utils.vw-convert-desktop(gap, 5px);
-      @include utils.vw-convert-desktop(border-radius, 20px);
+      @include utils.vw-convert-desktop(gap, 20px);
+      @include utils.vw-convert-desktop(border-radius, 50px);
 
       @include utils.mobile {
-        @include utils.vw-convert-mobile(padding, 25px);
-        @include utils.vw-convert-mobile(gap, 5px);
-        @include utils.vw-convert-mobile(border-radius, 20px);
+        @include utils.vw-convert-mobile(padding, 50px);
+        @include utils.vw-convert-mobile(gap, 20px);
+        @include utils.vw-convert-mobile(border-radius, 50px);
       }
 
-      .icon {
-        color: colors.$color-brand;
-        @include utils.vw-convert-desktop(width, 30px);
-        @include utils.vw-convert-desktop(height, 30px);
+      &.active,
+      &:hover {
+        background-color: colors.$color-blue;
+
+        .icon-shadow {
+          background-color: #ffffff20;
+
+          .icon-container {
+            background-color: #ffffff;
+
+            svg {
+              color: colors.$color-blue;
+            }
+          }
+        }
+
+        .card-title,
+        span {
+          color: #ffffff;
+        }
+      }
+
+      .icon-shadow {
+        background-color: #5095d710;
+        width: 14%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        @include utils.vw-convert-desktop(padding, 15px);
+        @include utils.vw-convert-desktop(margin-bottom, 50px);
 
         @include utils.mobile {
-          @include utils.vw-convert-mobile(width, 30px);
-          @include utils.vw-convert-mobile(height, 30px);
+          @include utils.vw-convert-mobile(padding, 15px);
+          @include utils.vw-convert-mobile(margin-bottom, 30px);
+        }
+
+        .icon-container {
+          background-color: colors.$color-blue;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            width: 60%;
+            height: 60%;
+            color: colors.$color-white;
+          }
         }
       }
 
       .card-title {
         font-weight: 600;
         color: colors.$color-gray;
-        @include utils.vw-convert-desktop(font-size, 18px);
+        @include utils.vw-convert-desktop(font-size, 20px);
 
         @include utils.mobile {
-          @include utils.vw-convert-mobile(font-size, 18px);
+          @include utils.vw-convert-mobile(font-size, 24px);
         }
       }
 
       span {
         font-weight: 400;
         color: colors.$color-gray;
-        line-height: 100%;
+        line-height: normal;
+        @include utils.vw-convert-desktop(font-size, 20px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 22px);
+        }
+      }
+    }
+  }
+
+  div.training {
+    @include utils.vw-convert-desktop(margin-bottom, 100px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(margin-bottom, 100px);
+    }
+    .swiper {
+      .swiper-slide {
+        @include utils.mobile {
+          width: 80%;
+        }
+
+        .box {
+          background-color: colors.$color-gray-100;
+          width: 100%;
+          @include utils.vw-convert-desktop(padding, 20px);
+          @include utils.vw-convert-desktop(border-radius, 40px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(border-radius, 40px);
+            // @include utils.vw-convert-mobile(padding, 10px);
+          }
+
+          .img-container {
+            width: 100%;
+            overflow: hidden;
+            aspect-ratio: 343/230;
+            @include utils.vw-convert-desktop(border-radius, 40px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(border-radius, 40px);
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          &-title {
+            @include utils.vw-convert-desktop(font-size, 20px);
+            @include utils.vw-convert-desktop(margin-top, 15px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(font-size, 20px);
+              @include utils.vw-convert-mobile(margin-top, 15px);
+            }
+          }
+
+          &-description {
+            @include utils.vw-convert-desktop(font-size, 20px);
+            color: colors.$color-gray-700;
+            font-family: "GeologicaThin";
+            line-height: normal;
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(font-size, 20px);
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+            }
+          }
+
+          .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            @include utils.vw-convert-desktop(padding, 20px 0);
+            @include utils.vw-convert-desktop(gap, 10px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(padding, 20px 0);
+              @include utils.vw-convert-mobile(gap, 10px);
+            }
+            a {
+              text-decoration: none;
+              @include utils.vw-convert-desktop(padding, 15px);
+              @include utils.vw-convert-desktop(border-radius, 20px);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              @include utils.mobile {
+                @include utils.vw-convert-mobile(padding, 15px);
+                @include utils.vw-convert-mobile(border-radius, 20px);
+              }
+            }
+
+            .more {
+              background-color: colors.$color-gray-200;
+              color: colors.$color-gray-cool;
+            }
+
+            .order {
+              background-color: colors.$color-blue;
+              color: colors.$color-white;
+            }
+          }
+        }
+      }
+    }
+
+    .training-body {
+      position: relative;
+
+      .prev-button {
+        @include utils.vw-convert-desktop(width, 50px);
+        border-radius: 50%;
+        border: none;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translate(-120%, -50%);
+        background-color: colors.$color-gray-100;
+
+        @include utils.mobile {
+          display: none;
+        }
+      }
+      .next-button {
+        @include utils.vw-convert-desktop(width, 50px);
+        border-radius: 50%;
+        border: none;
+        aspect-ratio: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(120%, -50%);
+        background-color: colors.$color-gray-100;
+        @include utils.mobile {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .faq {
+    @include utils.vw-convert-desktop(padding, 50px 0);
+    display: flex;
+    @include utils.vw-convert-desktop(gap, 100px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 50px 0);
+      @include utils.vw-convert-mobile(gap, 50px);
+      flex-direction: column;
+    }
+
+    &-image-container {
+      @include utils.vw-convert-desktop(width, 500px);
+
+      @include utils.mobile {
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+
+      &-image {
+        width: 100%;
+        height: auto;
+        @include utils.vw-convert-desktop(border-radius, 40px);
+        object-fit: contain;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(border-radius, 40px);
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      @include utils.vw-convert-desktop(gap, 30px);
+      // @include utils.vw-convert-desktop(padding-left, 100px);
+
+      &-title {
+        @include utils.vw-convert-desktop(font-size, 22px);
+        font-family: "GeologicaRegular";
+      }
+
+      .mantine-Accordion-root {
+        overflow: hidden;
+      }
+
+      .mantine-Accordion-item {
+        border: none;
+        button {
+          padding: 0;
+          @include utils.vw-convert-desktop(font-size, 18px);
+        }
+
+        .mantine-Accordion-content {
+          @include utils.vw-convert-desktop(padding, 30px 0);
+          @include utils.vw-convert-desktop(font-size, 16px);
+          width: 100%;
+          color: colors.$color-gray-700;
+        }
+      }
+
+      .accordion-icon {
+        @include utils.vw-convert-desktop(width, 25px);
+        @include utils.vw-convert-desktop(height, 25px);
       }
     }
   }
@@ -108,6 +630,7 @@
     background-color: colors.$color-blue;
     @include utils.vw-convert-desktop(border-radius, 20px);
     @include utils.vw-convert-desktop(padding, 20px);
+    @include utils.vw-convert-desktop(font-size, 15px);
     color: colors.$color-white;
     display: flex;
     justify-content: space-between;
@@ -117,6 +640,7 @@
     @include utils.mobile {
       @include utils.vw-convert-mobile(border-radius, 20px);
       @include utils.vw-convert-mobile(padding, 20px);
+      @include utils.vw-convert-mobile(font-size, 18px);
     }
   }
 
@@ -250,7 +774,7 @@
       }
 
       &-container {
-        background-color: colors.$color-gray-200;
+        background-color: colors.$color-gray-100;
         @include utils.vw-convert-desktop(padding, 20px 30px);
         @include utils.vw-convert-desktop(border-radius, 20px);
 
@@ -264,7 +788,7 @@
           width: 100%;
 
           td {
-            border-bottom: 1px solid colors.$color-gray-400;
+            border-bottom: 1px solid colors.$color-gray-300;
             @include utils.vw-convert-desktop(padding, 10px 5px);
             @include utils.vw-convert-desktop(font-size, 12px);
 
@@ -410,16 +934,16 @@
     }
 
     button.back {
-      background-color: colors.$color-gray-cool;
-      @include utils.vw-convert-desktop(padding, 15px 50px);
+      background-color: colors.$color-gray-100;
+      @include utils.vw-convert-desktop(padding, 15px 20px);
       @include utils.vw-convert-desktop(border-radius, 15px);
       border: none;
-      color: colors.$color-white;
+      color: colors.$color-gray-cool;
       display: flex;
       cursor: pointer;
 
       @include utils.mobile {
-        @include utils.vw-convert-mobile(padding, 15px 50px);
+        @include utils.vw-convert-mobile(padding, 15px 20px);
         @include utils.vw-convert-mobile(border-radius, 15px);
       }
     }
@@ -436,17 +960,31 @@
   align-items: flex-start !important;
 
   button.mantine-Stepper-step {
+    flex-direction: column !important;
+    width: 10% !important;
+
     @include utils.mobile {
       display: flex;
-      flex-direction: column !important;
-      width: 20% !important;
+      width: 15% !important;
     }
 
     .mantine-Stepper-stepBody {
-      @include utils.mobile {
-        margin: 0;
+      margin: 0;
+    }
+
+    .mantine-Stepper-stepIcon {
+      background-color: colors.$color-gray-400;
+
+      &[data-progress="true"],
+      &[data-completed="true"] {
+        background-color: #228be6;
+        color: colors.$color-white;
       }
     }
+  }
+
+  div[data-active="true"] {
+    background-color: #228be6;
   }
   .mantine-Stepper-stepIcon {
     @include utils.vw-convert-desktop(width, 50px);
@@ -462,20 +1000,30 @@
 
   .mantine-Stepper-stepDescription {
     @include utils.vw-convert-desktop(font-size, 15px);
+    text-align: center;
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(font-size, 20px);
-      text-align: center;
     }
   }
 
   .mantine-Stepper-separator {
-    @include utils.vw-convert-desktop(height, 2px);
+    @include utils.vw-convert-desktop(height, 5px);
     @include utils.vw-convert-desktop(margin-top, 25px);
+    margin-inline: unset !important;
+    background-color: colors.$color-gray-400;
 
     @include utils.mobile {
-      @include utils.vw-convert-mobile(height, 3px);
+      @include utils.vw-convert-mobile(height, 5px);
       @include utils.vw-convert-mobile(margin-top, 35px);
     }
   }
 }
+
+// .mantine-TextInput-wrapper {
+//   &[data-error="true"] {
+//     input {
+//       border-color: colors.$color-red !important;
+//     }
+//   }
+// }

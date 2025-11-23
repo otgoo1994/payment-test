@@ -3,14 +3,17 @@
 
 @use "./index";
 @use "./header";
+@use "./fonts.scss"; /* ---------------------------- */ /* Google Fonts import */
 
-/* ---------------------------- */
-/* Google Fonts import */
-@import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap");
 
 /* ---------------------------- */
 /* Бусад css rules */
 * {
-  font-family: "Geologica", sans-serif;
+  font-family: "GeologicaLight";
   margin: 0;
+}
+
+body {
+  overflow-x: hidden;
 }

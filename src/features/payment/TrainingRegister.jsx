@@ -10,7 +10,7 @@ export const TrainingRegister = ({
 }) => {
   const [selectedType, setSelectedType] = useState("football");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("11-13");
-  const [selectedTime, setSelectedTime] = useState("10:00");
+  const [selectedTime, setSelectedTime] = useState("11:00 - 12:00");
 
   const handleCallBack = () => {
     if (!onCallBack) return;
@@ -25,7 +25,7 @@ export const TrainingRegister = ({
     <>
       <div className="selector">
         <div className="name">
-          <p>Сургалтын мэдээлэл</p>
+          <p>Төрөл сонгох</p>
         </div>
         <div className="option">
           {types.map((item) => (
@@ -75,7 +75,7 @@ export const TrainingRegister = ({
         <div className="name">
           <p>Цагийн сонголт</p>
         </div>
-        <div className="option grid">
+        <div className="option">
           {schedules.map((item) => (
             <Radio.Card
               radius="md"

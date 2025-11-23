@@ -10,25 +10,21 @@ export const Payment = () => {
   const [active, setActive] = useState(0);
   const [selectedType, setSelectedType] = useState("football");
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("11-13");
-  const [selectedTime, setSelectedTime] = useState("10:00");
+  const [selectedTime, setSelectedTime] = useState("");
   const [userInfo, setUserInfo] = useState(null);
 
   const schedules = [
     {
-      label: "10 цаг",
-      value: "10:00",
+      label: "11:00 - 12:00 цагийн анги",
+      value: "11:00 - 12:00",
     },
     {
-      label: "12 цаг",
-      value: "12:00",
+      label: "15:00 - 16:00 цагийн анги",
+      value: "15:00 - 16:00",
     },
     {
-      label: "15 цаг",
-      value: "15:00",
-    },
-    {
-      label: "17 цаг",
-      value: "17:00",
+      label: "17:00 - 18:00 цагийн анги",
+      value: "17:00 - 18:00",
     },
   ];
 
@@ -52,7 +48,7 @@ export const Payment = () => {
 
   const types = [
     {
-      label: "Хөлмбөмбөг",
+      label: "Хөл бөмбөг",
       value: "football",
     },
     {
