@@ -219,9 +219,6 @@
     .swiper {
       .swiper-slide {
         aspect-ratio: 1160/480;
-        // @include utils.vw-convert-desktop(border-radius, 40px);
-        // overflow: hidden;
-
         @include utils.mobile {
           aspect-ratio: 1160/600;
         }
@@ -606,6 +603,22 @@
   }
 }
 
+.payment-mobile-header {
+  display: none;
+
+  @include utils.mobile {
+    display: flex;
+    @include utils.vw-convert-mobile(padding, 0 30px);
+    @include utils.vw-convert-mobile(padding-top, 50px);
+    @include utils.vw-convert-mobile(padding-bottom, 20px);
+  }
+
+  .payment-card-header-logo {
+    width: 30%;
+    height: auto;
+  }
+}
+
 .payment {
   background-color: colors.$color-gray-200;
   min-height: 100vh;
@@ -623,6 +636,29 @@
 
     @include utils.mobile {
       width: 90%;
+    }
+  }
+
+  &-logo-container {
+    display: flex;
+    align-items: center;
+    @include utils.vw-convert-desktop(gap, 10px);
+    @include utils.vw-convert-desktop(padding, 30px 0);
+    border-bottom: 1px solid colors.$color-gray-300;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(gap, 10px);
+      @include utils.vw-convert-mobile(padding, 30px 0);
+    }
+
+    .company-logo {
+      @include utils.vw-convert-desktop(width, 40px);
+      @include utils.vw-convert-desktop(height, 40px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(width, 40px);
+        @include utils.vw-convert-mobile(height, 40px);
+      }
     }
   }
 
@@ -879,12 +915,14 @@
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(padding-bottom, 20px);
+      display: none;
     }
   }
 
   .payment-body {
-    @include utils.vw-convert-desktop(padding-top, 20px);
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     @include utils.mobile {
       @include utils.vw-convert-mobile(padding-top, 20px);
       line-height: normal;
@@ -910,7 +948,222 @@
 
   .payment-footer {
     display: flex;
-    @include utils.vw-convert-desktop(padding, 30px);
+    @include utils.vw-convert-desktop(padding, 30px 0);
+    @include utils.vw-convert-desktop(gap, 10px);
+    justify-content: flex-end;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 30px);
+      @include utils.vw-convert-mobile(gap, 10px);
+    }
+
+    button.continue {
+      background-color: colors.$color-blue;
+      @include utils.vw-convert-desktop(padding, 15px 50px);
+      @include utils.vw-convert-desktop(border-radius, 15px);
+      border: none;
+      color: colors.$color-white;
+      cursor: pointer;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(padding, 15px 50px);
+        @include utils.vw-convert-mobile(border-radius, 15px);
+      }
+    }
+
+    button.back {
+      background-color: colors.$color-gray-100;
+      @include utils.vw-convert-desktop(padding, 15px 20px);
+      @include utils.vw-convert-desktop(border-radius, 15px);
+      border: none;
+      color: colors.$color-gray-cool;
+      display: flex;
+      cursor: pointer;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(padding, 15px 20px);
+        @include utils.vw-convert-mobile(border-radius, 15px);
+      }
+    }
+  }
+
+  .terms-condition {
+    display: flex;
+    justify-content: space-between;
+    @include utils.vw-convert-desktop(font-size, 14px);
+    p {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      @include utils.vw-convert-desktop(gap, 10px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(gap, 10px);
+      }
+    }
+
+    span {
+      color: colors.$color-blue;
+      font-family: "GeologicaRegular";
+      cursor: pointer;
+      @include utils.vw-convert-desktop(margin-left, 5px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(margin-left, 5px);
+      }
+    }
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(font-size, 14px);
+    }
+  }
+}
+
+.divider {
+  background-color: colors.$color-gray-200;
+  width: 100%;
+  height: 1px;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000030;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  &-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    @include utils.vw-convert-desktop(padding, 20px 0);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 20px 0);
+    }
+  }
+
+  &-content {
+    width: 40%;
+    height: 100%;
+    margin: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    @include utils.vw-convert-desktop(border-radius, 40px);
+    @include utils.vw-convert-desktop(padding, 0 40px);
+
+    @include utils.mobile {
+      width: 90%;
+      @include utils.vw-convert-mobile(border-radius, 40px);
+      @include utils.vw-convert-mobile(padding, 0 40px);
+    }
+  }
+
+  &-header {
+    @include utils.vw-convert-desktop(padding, 30px 0px);
+    @include utils.vw-convert-desktop(gap, 20px);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid colors.$color-gray-300;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 30px 0px);
+      @include utils.vw-convert-mobile(gap, 20px);
+    }
+
+    &-logo {
+      @include utils.vw-convert-desktop(width, 50px);
+      @include utils.vw-convert-desktop(height, 50px);
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(width, 50px);
+        @include utils.vw-convert-mobile(height, 50px);
+      }
+    }
+
+    &-title {
+      @include utils.vw-convert-desktop(font-size, 18px);
+      font-family: "GeologicaSemibold";
+      color: colors.$color-gray-700;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 18px);
+      }
+    }
+
+    &-subtitle {
+      @include utils.vw-convert-desktop(font-size, 16px);
+      font-family: "GeologicaRegular";
+      color: colors.$color-gray-700;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 16px);
+      }
+    }
+  }
+
+  &-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    @include utils.vw-convert-desktop(padding, 30px 0);
+    @include utils.vw-convert-desktop(padding-left, 30px);
+    @include utils.vw-convert-desktop(padding-right, 35px);
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(padding, 30px 0);
+      @include utils.vw-convert-mobile(padding-left, 30px);
+      @include utils.vw-convert-mobile(padding-right, 35px);
+    }
+
+    &-title {
+      font-family: "GeologicaRegular";
+      @include utils.vw-convert-desktop(font-size, 18px);
+      color: colors.$color-gray-700;
+
+      @include utils.mobile {
+        @include utils.vw-convert-mobile(font-size, 18px);
+      }
+    }
+
+    .contract-section {
+      &-title {
+        @include utils.vw-convert-desktop(font-size, 16px);
+        @include utils.vw-convert-desktop(margin-top, 20px);
+        color: colors.$color-gray-700;
+        font-family: "GeologicaRegular";
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 16px);
+          @include utils.vw-convert-mobile(margin-top, 20px);
+        }
+      }
+
+      &-content {
+        @include utils.vw-convert-desktop(font-size, 16px);
+        color: colors.$color-gray-700;
+        font-family: "GeologicaLight";
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 16px);
+        }
+      }
+    }
+  }
+
+  &-footer {
+    display: flex;
+    @include utils.vw-convert-desktop(padding, 30px 0);
     @include utils.vw-convert-desktop(gap, 10px);
     justify-content: flex-end;
 
@@ -950,22 +1203,21 @@
   }
 }
 
-.divider {
-  background-color: colors.$color-gray-200;
-  width: 100%;
-  height: 1px;
-}
-
 .mantine-Stepper-steps {
   align-items: flex-start !important;
 
   button.mantine-Stepper-step {
     flex-direction: column !important;
-    width: 10% !important;
+    width: 7% !important;
 
     @include utils.mobile {
       display: flex;
-      width: 15% !important;
+      width: 10% !important;
+    }
+
+    .mantine-Stepper-stepWrapper {
+      width: 100%;
+      aspect-ratio: 1;
     }
 
     .mantine-Stepper-stepBody {
@@ -987,13 +1239,12 @@
     background-color: #228be6;
   }
   .mantine-Stepper-stepIcon {
-    @include utils.vw-convert-desktop(width, 50px);
-    @include utils.vw-convert-desktop(height, 50px);
+    width: 100%;
+    height: 100%;
+
     @include utils.vw-convert-desktop(font-size, 12px);
 
     @include utils.mobile {
-      @include utils.vw-convert-mobile(width, 50px);
-      @include utils.vw-convert-mobile(height, 50px);
       @include utils.vw-convert-mobile(font-size, 20px);
     }
   }
@@ -1009,21 +1260,13 @@
 
   .mantine-Stepper-separator {
     @include utils.vw-convert-desktop(height, 5px);
-    @include utils.vw-convert-desktop(margin-top, 25px);
     margin-inline: unset !important;
     background-color: colors.$color-gray-400;
+    margin-top: 3%;
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(height, 5px);
-      @include utils.vw-convert-mobile(margin-top, 35px);
+      margin-top: 5%;
     }
   }
 }
-
-// .mantine-TextInput-wrapper {
-//   &[data-error="true"] {
-//     input {
-//       border-color: colors.$color-red !important;
-//     }
-//   }
-// }
