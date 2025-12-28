@@ -1,23 +1,97 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Group, Radio, Text, Checkbox, Notification } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconArrowLeft } from "@tabler/icons-react";
 import Fire from "@/assets/images/Fire.png";
 
-export const TrainingRegister = ({
-  schedules,
-  ageGroups,
-  types,
-  onCallBack,
-}) => {
-  const [selectedType, setSelectedType] = useState("football");
-  const [selectedAgeGroup, setSelectedAgeGroup] = useState("11-13");
-  const [selectedTime, setSelectedTime] = useState("11:00 - 12:00");
+export const TrainingRegister = ({ onCallBack }) => {
+  const [selectedType, setSelectedType] = useState(null);
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
   const [isOpen, setIsOpen] = useState(null);
   const [termsChecked, setTermsChecked] = useState(false);
 
+  const weekDays = [
+    "Даваа",
+    "Мягмар",
+    "Лхагва",
+    "Пүрэв",
+    "Баасан",
+    "Бямба",
+    "Ням",
+  ];
+
+  const types = [
+    {
+      label: "Сагсан бөмбөг",
+      value: "basketball",
+      image: "/src/assets/images/basketball.png",
+    },
+    {
+      label: "Гар бөмбөг",
+      value: "volleyball",
+      image: "/src/assets/images/volleyball.png",
+    },
+    {
+      label: "Хөл бөмбөг",
+      value: "football",
+      image: "/src/assets/images/football.png",
+    },
+  ];
+
+  const schedules = [
+    {
+      id: "СБ101",
+      title: "Анги 1",
+      description: "Бүтэн жилийн анги",
+      days: ["Даваа", "Пүрэв"],
+      schedule: "14:00 - 15:30",
+      startDate: "2026.01.01",
+    },
+    {
+      id: "СБ102",
+      title: "Анги 2",
+      description: "Хагас жилийн анги",
+      days: ["Мягмар", "Баасан"],
+      schedule: "14:00 - 15:30",
+      startDate: "2026.01.01",
+    },
+  ];
+
+  const ageGroups = [
+    {
+      label: "7-8 нас",
+      value: "7-8",
+      price: 350000,
+    },
+    {
+      label: "9-10 нас",
+      value: "9-10",
+      price: 350000,
+    },
+    {
+      label: "11-12 нас",
+      value: "11-12",
+      price: 450000,
+    },
+    {
+      label: "13-14 нас",
+      value: "13-14",
+      price: 500000,
+    },
+  ];
+
   const handleCallBack = () => {
     if (!onCallBack) return;
+    if (!selectedAgeGroup || !selectedTime || !selectedType) {
+      notifications.show({
+        color: "red",
+        title: "Амжилтгүй!",
+        message: "Талбараа бүрэн бөглөнө үү",
+        position: "top-right",
+      });
+      return;
+    }
     if (!termsChecked) {
       notifications.show({
         color: "red",
@@ -28,9 +102,9 @@ export const TrainingRegister = ({
       return;
     }
     onCallBack({
-      type: selectedType,
-      group: selectedAgeGroup,
-      time: selectedTime,
+      type: types.find((item) => item.value === selectedType),
+      group: ageGroups.find((item) => item.value === selectedAgeGroup),
+      time: schedules.find((item) => item.id === selectedTime),
     });
   };
 
@@ -43,9 +117,12 @@ export const TrainingRegister = ({
     <>
       <div className="selector">
         <div className="name">
-          <p>Төрөл сонгох</p>
+          <p className="title">Сургалтын төрөл сонгох</p>
+          <p className="description">
+            Та хүүхдээ хамрагдуулах спортын төрлийг сонгоно уу
+          </p>
         </div>
-        <div className="option">
+        <div className="option grid col-3">
           {types.map((item) => (
             <Radio.Card
               radius="md"
@@ -55,10 +132,21 @@ export const TrainingRegister = ({
               onClick={() => setSelectedType(item.value)}
             >
               <Group wrap="nowrap" align="flex-start">
-                <div>
-                  <Text>{item.label}</Text>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                  }}
+                >
+                  <div>
+                    <img src={item.image} alt="" style={{ width: "100%" }} />
+                  </div>
+                  <div className="indicator-container">
+                    <Text>{item.label}</Text>
+                    <Radio.Indicator />
+                  </div>
                 </div>
-                <Radio.Indicator />
               </Group>
             </Radio.Card>
           ))}
@@ -67,9 +155,12 @@ export const TrainingRegister = ({
       <div className="divider" />
       <div className="selector">
         <div className="name">
-          <p>Насны ангилал</p>
+          <p className="title">Насны ангилал сонгох</p>
+          <p className="description">
+            Та хүүхдийнхээ насны ангиллыг сонгоно уу
+          </p>
         </div>
-        <div className="option">
+        <div className="option grid col-4">
           {ageGroups.map((item) => (
             <Radio.Card
               radius="md"
@@ -91,25 +182,167 @@ export const TrainingRegister = ({
       <div className="divider" />
       <div className="selector">
         <div className="name">
-          <p>Цагийн сонголт</p>
+          <p className="title">Цагийн хуваарь</p>
+          <p className="description">
+            Сургалтанд хамрагдах боломжтой өдөр, цагийг сонгоно уу
+          </p>
         </div>
         <div className="option">
-          {schedules.map((item) => (
-            <Radio.Card
-              radius="md"
-              value={item.value}
-              key={item.value}
-              checked={selectedTime === item.value}
-              onClick={() => setSelectedTime(item.value)}
-            >
-              <Group wrap="nowrap" align="flex-start">
-                <div>
-                  <Text>{item.label}</Text>
+          <div className="schedule-wrapper">
+            {selectedType && selectedAgeGroup ? (
+              <div className="schedule-header">
+                {types.find((item) => item.value === selectedType).label} /
+                {ageGroups.find((item) => item.value == selectedAgeGroup).label}
+                / · Төлбөр -{" "}
+                {ageGroups
+                  .find((item) => item.value == selectedAgeGroup)
+                  .price.toLocaleString()}
+                ₮ /Сарын/
+              </div>
+            ) : (
+              <div className="schedule-header none" />
+            )}
+            <table className="schedule-table">
+              <colgroup>
+                <col className="schedule-checkbox-container" />
+                <col span="7" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>До</th>
+                  <th>Мя</th>
+                  <th>Лх</th>
+                  <th>Пү</th>
+                  <th>Ба</th>
+                  <th>Бя</th>
+                  <th>Ня</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {selectedType && selectedAgeGroup ? (
+                  <>
+                    {schedules.map((item) => (
+                      <React.Fragment key={`item-row=${item.id}`}>
+                        <tr
+                          className={`schedule-row ${
+                            selectedTime === item.id && "selected"
+                          }`}
+                          onClick={() => {
+                            setSelectedTime(item.id);
+                          }}
+                        >
+                          <td rowSpan={2}>
+                            <Checkbox
+                              size="sm"
+                              color="#154284"
+                              checked={selectedTime === item.id}
+                            />
+                          </td>
+                          {weekDays.map((day, index) => (
+                            <td key={index}>
+                              {item.days.includes(day) ? (
+                                <div className="time-container">
+                                  {selectedTime === item.id && (
+                                    <div className="head-bar" />
+                                  )}
+                                  {item.schedule}
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </td>
+                          ))}
+                        </tr>
+                        <tr
+                          className={`info-row ${
+                            selectedTime === item.id && "selected"
+                          }`}
+                        >
+                          <td colSpan={7}>
+                            <span>{item.title}</span> /{item.id}/ ·{" "}
+                            {item.description} · Эхлэх хугацаа {item.startDate}
+                          </td>
+                        </tr>
+                      </React.Fragment>
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <tr className={`schedule-row`}>
+                      <td rowSpan={2}>
+                        <Checkbox size="sm" color="#154284" disabled />
+                      </td>
+                      {weekDays.map((day, index) => (
+                        <td key={index}>
+                          <div className="time-container" />
+                        </td>
+                      ))}
+                    </tr>
+                    <tr className={`info-row`}>
+                      <td colSpan={7}>---- ---- ----</td>
+                    </tr>
+                  </>
+                )}
+              </tbody>
+            </table>
+            {selectedType && selectedAgeGroup ? (
+              <div className="schedule-table-mobile">
+                {schedules.map((item) => (
+                  <div
+                    className={`schedule-table-mobile-container ${
+                      selectedTime === item.id && "selected"
+                    }`}
+                    onClick={() => {
+                      setSelectedTime(item.id);
+                    }}
+                  >
+                    <Checkbox
+                      size="sm"
+                      color="#154284"
+                      checked={selectedTime === item.id}
+                    />
+                    <div className="">
+                      <p>
+                        {item.days.map((day, index) => (
+                          <span>{index > 0 ? `, ${day}` : day}</span>
+                        ))}
+                        <span className="schedule">{item.schedule}</span>
+                      </p>
+                      <p>
+                        <span>Анги</span>
+                        <span className="schedule">
+                          /{item.id}/ {item.description}
+                        </span>
+                      </p>
+                      <p>
+                        <span>Эхлэх хугацаа</span>
+                        <span className="schedule">{item.startDate}</span>
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="schedule-table-mobile">
+                <div className={`schedule-table-mobile-container bordered`}>
+                  <Checkbox size="sm" color="#154284" disabled />
+                  <div className="">
+                    <p>
+                      <span className="schedule">----</span>
+                    </p>
+                    <p>
+                      <span className="schedule">----</span>
+                    </p>
+                    <p>
+                      <span className="schedule">----</span>
+                    </p>
+                  </div>
                 </div>
-                <Radio.Indicator />
-              </Group>
-            </Radio.Card>
-          ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -123,6 +356,7 @@ export const TrainingRegister = ({
           <Checkbox
             label=""
             checked={termsChecked}
+            color="#154284"
             onClick={() => setTermsChecked(!termsChecked)}
           />
         </div>

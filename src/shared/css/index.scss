@@ -304,6 +304,7 @@
       background-color: colors.$color-gray-100;
       display: flex;
       flex-direction: column;
+      cursor: pointer;
       @include utils.vw-convert-desktop(padding, 25px);
       @include utils.vw-convert-desktop(gap, 20px);
       @include utils.vw-convert-desktop(border-radius, 50px);
@@ -314,8 +315,7 @@
         @include utils.vw-convert-mobile(border-radius, 50px);
       }
 
-      &.active,
-      &:hover {
+      &.active {
         background-color: colors.$color-blue;
 
         .icon-shadow {
@@ -575,57 +575,23 @@
       width: 100%;
       @include utils.vw-convert-desktop(gap, 30px);
       // @include utils.vw-convert-desktop(padding-left, 100px);
-
-      &-title {
+      &- &-title {
         @include utils.vw-convert-desktop(font-size, 22px);
         font-family: "GeologicaRegular";
-      }
-
-      .mantine-Accordion-root {
-        overflow: hidden;
-      }
-
-      .mantine-Accordion-item {
-        border: none;
-        button {
-          padding: 0;
-          @include utils.vw-convert-desktop(font-size, 18px);
-        }
-
-        .mantine-Accordion-content {
-          @include utils.vw-convert-desktop(padding, 30px 0);
-          @include utils.vw-convert-desktop(font-size, 16px);
-          width: 100%;
-          color: colors.$color-gray-700;
-        }
-      }
-
-      .accordion-icon {
-        @include utils.vw-convert-desktop(width, 25px);
-        @include utils.vw-convert-desktop(height, 25px);
       }
     }
   }
 }
 
-.payment-mobile-header {
-  display: none;
-
-  @include utils.mobile {
-    display: flex;
-    @include utils.vw-convert-mobile(padding, 0 30px);
-    @include utils.vw-convert-mobile(padding-top, 50px);
-    @include utils.vw-convert-mobile(padding-bottom, 20px);
-  }
-
-  .payment-card-header-logo {
-    width: 30%;
-    height: auto;
-  }
-}
-
 .payment {
-  background-color: colors.$color-gray-200;
+  // background-color: colors.$color-gray-200;
+  background: linear-gradient(
+    to bottom,
+    colors.$color-deep-blue 0%,
+    colors.$color-deep-blue 30%,
+    colors.$color-gray-200 30%,
+    colors.$color-gray-200 100%
+  );
   min-height: 100vh;
   @include utils.vw-convert-desktop(padding-top, 50px);
   @include utils.vw-convert-desktop(padding-bottom, 50px);
@@ -636,11 +602,43 @@
   }
 
   &-container {
-    width: 40%;
+    width: 50%;
     margin: auto;
 
     @include utils.mobile {
       width: 90%;
+    }
+
+    &-logo {
+      display: flex;
+      justify-content: space-between;
+
+      .payment-card-header-logo {
+        @include utils.vw-convert-desktop(width, 280px);
+        height: auto;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(width, 120px);
+        }
+      }
+
+      .line-container {
+        display: flex;
+        @include utils.vw-convert-desktop(gap, 20px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(gap, 20px);
+        }
+
+        img {
+          @include utils.vw-convert-desktop(width, 75px);
+          height: auto;
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(width, 32px);
+          }
+        }
+      }
     }
   }
 
@@ -668,7 +666,7 @@
   }
 
   .price-container {
-    background-color: colors.$color-blue;
+    background-color: colors.$color-deep-blue;
     @include utils.vw-convert-desktop(border-radius, 20px);
     @include utils.vw-convert-desktop(padding, 20px);
     @include utils.vw-convert-desktop(font-size, 15px);
@@ -744,8 +742,23 @@
 
   .selector {
     display: flex;
+    flex-direction: column;
     @include utils.vw-convert-desktop(margin-top, 50px);
     @include utils.vw-convert-desktop(margin-bottom, 50px);
+
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+
+    &.grid {
+      display: grid;
+      @include utils.vw-convert-desktop(gap, 30px);
+      grid-template-columns: 1fr 2fr;
+
+      @include utils.mobile {
+        grid-template-columns: 1fr;
+      }
+    }
 
     @include utils.mobile {
       flex-direction: column;
@@ -755,17 +768,28 @@
 
     .name {
       color: colors.$color-gray;
-      width: 35%;
+      @include utils.vw-convert-desktop(margin-bottom, 20px);
 
       @include utils.mobile {
         @include utils.vw-convert-mobile(margin-bottom, 20px);
       }
 
-      p {
-        @include utils.vw-convert-desktop(font-size, 13px);
+      .title {
+        @include utils.vw-convert-desktop(font-size, 16px);
+        font-weight: 500;
+        color: colors.$color-gray-700;
 
         @include utils.mobile {
-          @include utils.vw-convert-mobile(font-size, 18px);
+          @include utils.vw-convert-mobile(font-size, 20px);
+        }
+      }
+
+      .description {
+        @include utils.vw-convert-desktop(font-size, 14px);
+        color: colors.$color-gray-cool;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 20px);
         }
       }
     }
@@ -773,7 +797,28 @@
     .option.grid {
       flex-grow: 1;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      &.col-2 {
+        grid-template-columns: 1fr 1fr;
+        @include utils.mobile {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      &.col-3 {
+        grid-template-columns: 1fr 1fr 1fr;
+
+        @include utils.mobile {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      &.col-4 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        @include utils.mobile {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
     }
 
     .option {
@@ -782,8 +827,127 @@
       flex-direction: column;
       @include utils.vw-convert-desktop(gap, 10px);
 
+      .input-description {
+        color: colors.$color-gray-cool;
+        @include utils.vw-convert-desktop(font-size, 14px);
+        font-style: normal;
+        font-weight: 250;
+        line-height: normal;
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(font-size, 18px);
+        }
+      }
+
       @include utils.mobile {
         @include utils.vw-convert-mobile(gap, 10px);
+      }
+
+      .bordered {
+        .mantine-Accordion-root {
+          overflow: hidden;
+        }
+
+        .mantine-Accordion-item {
+          border: 1px solid colors.$color-gray-300 !important;
+          @include utils.vw-convert-desktop(padding, 10px 15px);
+          @include utils.vw-convert-desktop(margin-top, 20px);
+          @include utils.vw-convert-desktop(border-radius, 20px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(padding, 10px 15px);
+            @include utils.vw-convert-mobile(margin-top, 20px);
+            @include utils.vw-convert-mobile(border-radius, 20px);
+          }
+
+          button {
+            padding: 0;
+            @include utils.vw-convert-desktop(font-size, 14px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(font-size, 18px);
+            }
+          }
+
+          .mantine-Accordion-content {
+            padding: 0;
+            @include utils.vw-convert-desktop(font-size, 16px);
+            width: 100%;
+            color: colors.$color-gray-700;
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(font-size, 18px);
+            }
+          }
+
+          .logo-icon {
+            @include utils.vw-convert-desktop(width, 40px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(width, 40px);
+            }
+          }
+
+          .mantine-Accordion-label {
+            display: flex;
+            align-items: center;
+            @include utils.vw-convert-desktop(gap, 10px);
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(gap, 10px);
+            }
+          }
+        }
+
+        .accordion-icon {
+          @include utils.vw-convert-desktop(width, 25px);
+          @include utils.vw-convert-desktop(height, 25px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(width, 25px);
+            @include utils.vw-convert-mobile(height, 25px);
+          }
+        }
+
+        .option-container {
+          padding: 0;
+        }
+      }
+
+      .mantine-Accordion-item {
+        border: none !important;
+
+        .mantine-Accordion-label {
+          @include utils.vw-convert-desktop(font-size, 14px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(font-size, 18px);
+          }
+        }
+
+        .mantine-Accordion-content {
+          padding: 0;
+
+          table.user-info-table {
+            @include utils.vw-convert-desktop(font-size, 14px);
+            width: 100%;
+
+            @include utils.mobile {
+              @include utils.vw-convert-mobile(font-size, 18px);
+            }
+            td {
+              &:nth-child(1) {
+                width: 30%;
+                color: colors.$color-gray-cool;
+              }
+
+              &:nth-child(2) {
+                color: colors.$color-gray-700;
+                text-align: left;
+              }
+            }
+          }
+        }
       }
 
       button,
@@ -791,6 +955,7 @@
         @include utils.vw-convert-desktop(padding, 15px);
         @include utils.vw-convert-desktop(border-radius, 15px);
         background-color: colors.$color-gray-100;
+        border: none;
 
         @include utils.mobile {
           @include utils.vw-convert-mobile(padding, 15px);
@@ -803,6 +968,40 @@
 
           @include utils.mobile {
             @include utils.vw-convert-mobile(font-size, 14px);
+          }
+        }
+
+        .indicator-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          @include utils.vw-convert-desktop(margin-top, 14px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(margin-top, 14px);
+
+            p {
+              @include utils.vw-convert-mobile(font-size, 20px);
+            }
+          }
+        }
+
+        .mantine-RadioIndicator-indicator {
+          @include utils.vw-convert-desktop(padding, 3px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(padding, 5px);
+          }
+
+          &[data-checked="true"] {
+            background-color: colors.$color-white;
+            border-color: colors.$color-deep-blue;
+
+            svg {
+              color: colors.$color-deep-blue;
+              width: 100%;
+              height: 100%;
+            }
           }
         }
       }
@@ -824,28 +1023,42 @@
           @include utils.vw-convert-mobile(border-radius, 20px);
         }
 
-        table {
+        &.bordered {
+          border: 1px solid colors.$color-gray-300;
+        }
+
+        .info {
+          display: grid;
+          @include utils.vw-convert-desktop(gap, 30px);
+          grid-template-columns: 1fr 1fr 1fr;
+          width: 100%;
+
+          @include utils.mobile {
+            grid-template-columns: 1fr;
+
+            img {
+              @include utils.vw-convert-mobile(margin-bottom, 30px);
+            }
+          }
+        }
+
+        table.desktop {
           border-collapse: collapse;
           width: 100%;
 
           td {
             border-bottom: 1px solid colors.$color-gray-300;
             @include utils.vw-convert-desktop(padding, 10px 5px);
-            @include utils.vw-convert-desktop(font-size, 12px);
-
-            @include utils.mobile {
-              @include utils.vw-convert-mobile(padding, 10px 5px);
-              @include utils.vw-convert-mobile(font-size, 18px);
-            }
+            @include utils.vw-convert-desktop(font-size, 14px);
 
             &:nth-child(1) {
-              width: 30%;
+              width: 40%;
               color: colors.$color-gray-cool;
               font-weight: 300;
             }
 
             &:nth-child(2) {
-              color: colors.$color-black;
+              color: colors.$color-gray-700;
               font-weight: 300;
               text-align: left;
             }
@@ -854,27 +1067,129 @@
           tr:last-child td {
             border: none !important;
           }
+
+          @include utils.mobile {
+            display: none;
+          }
         }
+
+        table.mobile {
+          display: none;
+
+          @include utils.mobile {
+            display: table;
+            border-collapse: collapse;
+            width: 100%;
+
+            tbody,
+            tr {
+              width: 100%;
+            }
+
+            td {
+              border-bottom: 1px solid colors.$color-gray-300;
+              @include utils.vw-convert-mobile(padding, 20px 5px);
+              @include utils.vw-convert-mobile(font-size, 18px);
+
+              &:nth-child(1) {
+                width: 30%;
+                color: colors.$color-gray-cool;
+                font-weight: 300;
+              }
+
+              &:nth-child(2) {
+                color: colors.$color-gray-700;
+                font-weight: 300;
+                text-align: left;
+              }
+            }
+
+            tr:last-child td {
+              border: none !important;
+            }
+          }
+        }
+
         table.payment-info-table {
+          width: 100%;
           td {
             &:nth-child(1) {
               width: 50%;
+              @include utils.vw-convert-desktop(font-size, 14px);
+
+              @include utils.mobile {
+                @include utils.vw-convert-mobile(font-size, 18px);
+              }
+
+              p {
+                display: none;
+
+                @include utils.mobile {
+                  @include utils.vw-convert-mobile(font-size, 18px);
+                  color: colors.$color-gray-700;
+                  font-weight: 600;
+                  display: block;
+                }
+              }
             }
 
             &:nth-child(2) {
               color: colors.$color-black;
               text-align: right;
+
+              p {
+                @include utils.vw-convert-desktop(font-size, 14px);
+
+                @include utils.mobile {
+                  display: none;
+                }
+              }
+
+              svg {
+                display: none;
+
+                @include utils.mobile {
+                  display: inline;
+                  @include utils.vw-convert-mobile(width, 30px);
+                }
+              }
             }
           }
         }
       }
 
+      .mantine-TextInput-wrapper {
+        &[data-error="true"] {
+          .mantine-TextInput-input {
+            border-color: colors.$color-red;
+
+            &::placeholder {
+              color: colors.$color-gray-cool;
+            }
+          }
+        }
+      }
+
+      .mantine-TextInput-error {
+        display: none !important;
+      }
+
+      .mantine-TextInput-label {
+        color: colors.$color-gray-700;
+        @include utils.vw-convert-desktop(font-size, 14px);
+      }
+
       .mantine-TextInput-input {
         @include utils.vw-convert-desktop(border-radius, 18px);
         @include utils.vw-convert-desktop(padding, 25px 20px);
-        @include utils.vw-convert-desktop(font-size, 12px);
+        @include utils.vw-convert-desktop(font-size, 14px);
         font-family: "Geologica", sans-serif;
         background-color: colors.$color-gray-100;
+        border-color: colors.$color-gray-200;
+
+        &::placeholder {
+          color: colors.$color-gray-cool;
+        }
 
         @include utils.mobile {
           @include utils.vw-convert-mobile(border-radius, 18px);
@@ -899,15 +1214,13 @@
 
 .payment-card {
   background-color: colors.$color-white;
-  @include utils.vw-convert-desktop(padding, 30px);
   @include utils.vw-convert-desktop(border-radius, 50px);
-  @include utils.vw-convert-desktop(margin-top, 30px);
+  @include utils.vw-convert-desktop(padding, 40px);
 
   @include utils.mobile {
     background-color: colors.$color-white;
-    @include utils.vw-convert-mobile(padding, 30px);
+    @include utils.vw-convert-mobile(padding, 40px);
     @include utils.vw-convert-mobile(border-radius, 50px);
-    @include utils.vw-convert-mobile(margin-top, 30px);
   }
 
   &-header {
@@ -963,7 +1276,7 @@
     }
 
     button.continue {
-      background-color: colors.$color-blue;
+      background-color: colors.$color-deep-blue;
       @include utils.vw-convert-desktop(padding, 15px 50px);
       @include utils.vw-convert-desktop(border-radius, 15px);
       border: none;
@@ -973,6 +1286,12 @@
       @include utils.mobile {
         @include utils.vw-convert-mobile(padding, 15px 50px);
         @include utils.vw-convert-mobile(border-radius, 15px);
+      }
+
+      &.disabled {
+        background-color: colors.$color-gray-100;
+        color: colors.$color-gray-cool;
+        pointer-events: none;
       }
     }
 
@@ -1012,7 +1331,7 @@
     }
 
     span {
-      color: colors.$color-blue;
+      color: colors.$color-deep-blue;
       font-family: "GeologicaRegular";
       cursor: pointer;
       @include utils.vw-convert-desktop(margin-left, 5px);
@@ -1025,6 +1344,21 @@
     @include utils.mobile {
       @include utils.vw-convert-mobile(font-size, 14px);
     }
+  }
+}
+
+.stepper-card {
+  background-color: colors.$color-white;
+  // @include utils.vw-convert-desktop(padding, 40px);
+  @include utils.vw-convert-desktop(border-radius, 50px);
+  @include utils.vw-convert-desktop(margin-top, 30px);
+  overflow: hidden;
+
+  @include utils.mobile {
+    background-color: colors.$color-white;
+    // @include utils.vw-convert-mobile(padding, 40px);
+    @include utils.vw-convert-mobile(border-radius, 50px);
+    @include utils.vw-convert-mobile(margin-top, 30px);
   }
 }
 
@@ -1208,12 +1542,172 @@
   }
 }
 
+.schedule-wrapper {
+  width: 100%;
+  // border-radius: 8px;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+.schedule-header {
+  background: colors.$color-deep-blue;
+  color: white;
+  @include utils.vw-convert-desktop(padding, 10px 16px);
+  @include utils.vw-convert-desktop(font-size, 14px);
+  font-weight: 500;
+  text-align: center;
+
+  &.none {
+    background-color: transparent;
+    border-top: 1px solid colors.$color-gray-300;
+    border-left: 1px solid colors.$color-gray-300;
+    border-right: 1px solid colors.$color-gray-300;
+    color: colors.$color-gray-cool;
+    font-weight: 200;
+    &::before {
+      content: "---- ----";
+    }
+  }
+
+  @include utils.mobile {
+    @include utils.vw-convert-mobile(font-size, 18px);
+    @include utils.vw-convert-mobile(padding, 15px 0);
+  }
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  .schedule-checkbox-container {
+    @include utils.vw-convert-desktop(width, 50px);
+  }
+
+  @include utils.mobile {
+    display: none;
+  }
+
+  &-mobile {
+    display: none;
+
+    @include utils.mobile {
+      display: block;
+      &-container {
+        display: flex;
+        @include utils.vw-convert-mobile(gap, 30px);
+        @include utils.vw-convert-mobile(padding, 10px 20px);
+        align-items: center;
+
+        &.bordered {
+          border: 1px solid colors.$color-gray-300;
+        }
+
+        &.selected {
+          background-color: colors.$color-gray-100;
+        }
+
+        p {
+          span {
+            @include utils.vw-convert-mobile(font-size, 20px);
+
+            &.schedule {
+              color: colors.$color-gray-cool;
+              @include utils.vw-convert-mobile(margin-left, 20px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.schedule-table th,
+.schedule-table td {
+  border: 1px solid colors.$color-gray-300;
+  @include utils.vw-convert-desktop(padding, 10px 0);
+  text-align: center;
+  @include utils.vw-convert-desktop(font-size, 14px);
+}
+
+.schedule-table th {
+  font-weight: 600;
+}
+
+.schedule-table td:first-child {
+  @include utils.vw-convert-desktop(width, 40px);
+}
+.schedule-row {
+  &.selected {
+    background-color: colors.$color-gray-100;
+  }
+
+  td {
+    .mantine-Checkbox-root {
+      display: flex;
+      justify-content: center;
+    }
+
+    padding: 0;
+    .time-container {
+      background-color: "yellow";
+      display: "flex";
+      height: 100%;
+      @include utils.vw-convert-desktop(padding, 15px 0);
+      justify-content: center;
+      position: relative;
+      @include utils.vw-convert-desktop(min-height, 50px);
+
+      .head-bar {
+        position: absolute;
+        top: 0;
+        @include utils.vw-convert-desktop(height, 5px);
+        width: 100%;
+        background-color: colors.$color-deep-blue;
+      }
+    }
+
+    // @include utils.vw-convert-desktop(padding, 15px 0);
+
+    // @include utils.mobile {
+    //   @include utils.vw-convert-mobile(padding, 15px 0);
+    // }
+  }
+}
+
+.info-row {
+  &.selected {
+    background-color: colors.$color-gray-100;
+  }
+
+  td {
+    text-align: left;
+    @include utils.vw-convert-desktop(font-size, 12px);
+    color: colors.$color-gray-cool;
+    text-align: center;
+
+    @include utils.mobile {
+      @include utils.vw-convert-mobile(font-size, 12px);
+    }
+
+    span {
+      color: colors.$color-black;
+    }
+  }
+}
+
 .mantine-Stepper-steps {
   align-items: flex-start !important;
+  background-color: colors.$color-gray-100;
+  @include utils.vw-convert-desktop(padding, 40px 60px);
+
+  @include utils.mobile {
+    @include utils.vw-convert-mobile(padding, 60px);
+  }
 
   button.mantine-Stepper-step {
     flex-direction: column !important;
-    width: 7% !important;
+    width: 5% !important;
 
     @include utils.mobile {
       display: flex;
@@ -1230,18 +1724,20 @@
     }
 
     .mantine-Stepper-stepIcon {
-      background-color: colors.$color-gray-400;
+      background-color: colors.$color-gray-300;
+      border-color: colors.$color-gray-300;
 
       &[data-progress="true"],
       &[data-completed="true"] {
-        background-color: #228be6;
+        background-color: colors.$color-deep-blue;
         color: colors.$color-white;
+        border-color: colors.$color-deep-blue;
       }
     }
   }
 
   div[data-active="true"] {
-    background-color: #228be6;
+    background-color: colors.$color-deep-blue;
   }
   .mantine-Stepper-stepIcon {
     width: 100%;
@@ -1266,12 +1762,20 @@
   .mantine-Stepper-separator {
     @include utils.vw-convert-desktop(height, 5px);
     margin-inline: unset !important;
-    background-color: colors.$color-gray-400;
-    margin-top: 3%;
+    background-color: colors.$color-gray-300;
+    margin-top: 2%;
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(height, 5px);
-      margin-top: 5%;
+      margin-top: 6%;
     }
+  }
+}
+
+.mo-br {
+  display: none;
+
+  @include utils.mobile {
+    display: block;
   }
 }

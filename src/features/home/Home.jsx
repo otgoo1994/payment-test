@@ -34,7 +34,7 @@ export const Home = () => {
           <p className="title">БОЛОМЖУУД</p>
         </div>
         <div className="chances">
-          <div className={`card`}>
+          <div className={`card active`}>
             <div className="icon-shadow">
               <div className="icon-container">
                 <IconPlus className="icon" />

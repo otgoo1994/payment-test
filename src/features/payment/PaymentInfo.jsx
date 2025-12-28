@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { Accordion } from "@mantine/core";
-import { IconArrowLeft } from "@tabler/icons-react";
+import { IconArrowLeft, IconCopy } from "@tabler/icons-react";
 import { Group, Radio, Text } from "@mantine/core";
 import QRCode from "react-qr-code";
 
 export const PaymentInfo = ({
-  schedules,
-  ageGroups,
-  types,
   schedule,
   group,
   type,
@@ -45,29 +42,24 @@ export const PaymentInfo = ({
       receiver: "Мультитехнологи",
       accountNumber: "77 0000 11 2205033971",
       transactionValue: "2511 1016",
+      image: "/src/assets/images/golomt_icon.png",
     },
     {
       bank: "Худалдаа хөгжлийн банк",
       receiver: "Мультитехнологи",
       accountNumber: "77 0000 11 2205033971",
       transactionValue: "2511 1016",
+      image: "/src/assets/images/tdb_icon.png",
     },
     {
       bank: "Хас банк",
       receiver: "Мультитехнологи",
       accountNumber: "77 0000 11 2205033971",
       transactionValue: "2511 1016",
+      image: "/src/assets/images/xacbank_icon.png",
     },
   ];
 
-  const getSelectedSchedule = (value) => {
-    const result = schedules.find((item) => item.value === value);
-    return result.label;
-  };
-  const getSelectedType = (value) => {
-    const result = types.find((item) => item.value === value);
-    return result.label;
-  };
   const getSelectedGroup = (value, type) => {
     const result = ageGroups.find((item) => item.value === value);
     return result.price.toLocaleString();
@@ -85,101 +77,165 @@ export const PaymentInfo = ({
     <>
       <div className="selector">
         <div className="name">
-          <p>Сургалтын мэдээлэл</p>
+          <p className="title">Сургалтын Мэдээлэл</p>
+          <p className="description">Таны сонгосон сургалтын мэдээлэл</p>
         </div>
         <div className="option">
           <div className="option-container">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Төрөл</td>
-                  <td>{getSelectedType(type)}</td>
-                </tr>
-                <tr>
-                  <td>Нас</td>
-                  <td>{group} нас</td>
-                </tr>
-                <tr>
-                  <td>Цаг</td>
-                  <td>{getSelectedSchedule(schedule)}</td>
-                </tr>
-                <tr>
-                  <td>Төлбөр</td>
-                  <td>{getSelectedGroup(group)}₮ /1 сарын төлбөр/</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="info">
+              <img src={type.image} alt="" style={{ width: "100%" }} />
+              <table className="desktop" style={{ width: "100%" }}>
+                <tbody>
+                  <tr>
+                    <td>Төрөл</td>
+                    <td>{type.label}</td>
+                  </tr>
+                  <tr>
+                    <td>Нас</td>
+                    <td>{group.label}</td>
+                  </tr>
+                  <tr>
+                    <td>Өдөр</td>
+                    <td>
+                      {schedule.days.map((day, index) => (
+                        <span key={`span-day-${day}`}>
+                          {index > 0 ? `, ${day}` : day}
+                        </span>
+                      ))}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table className="desktop" style={{ width: "100%" }}>
+                <tbody>
+                  <tr>
+                    <td>Анги</td>
+                    <td>{schedule.id}</td>
+                  </tr>
+                  <tr>
+                    <td>Төлбөр</td>
+                    <td>{group.price.toLocaleString()} /сар/</td>
+                  </tr>
+                  <tr>
+                    <td>Цаг</td>
+                    <td>{schedule.schedule}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table className="mobile" style={{ width: "100%" }}>
+                <tbody>
+                  <tr>
+                    <td>Төрөл</td>
+                    <td>{type.label}</td>
+                  </tr>
+                  <tr>
+                    <td>Анги</td>
+                    <td>{schedule.id}</td>
+                  </tr>
+                  <tr>
+                    <td>Нас</td>
+                    <td>{group.label}</td>
+                  </tr>
+                  <tr>
+                    <td>Төлбөр</td>
+                    <td>{group.price.toLocaleString()} /сар/</td>
+                  </tr>
+                  <tr>
+                    <td>Өдөр</td>
+                    <td>
+                      {schedule.days.map((day, index) => (
+                        <span key={`span-day-${day}`}>
+                          {index > 0 ? `, ${day}` : day}
+                        </span>
+                      ))}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Цаг</td>
+                    <td>{schedule.schedule}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-      <div className="divider" />
       <div className="selector">
-        <div className="name">
-          <p>
-            Асран хамгаалагчийн <br />
-            мэдээлэл
-          </p>
-        </div>
-        <div className="option">
-          <div className="option-container">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Овог</td>
-                  <td>{userInfo.parent.lastname}</td>
-                </tr>
-                <tr>
-                  <td>Нэр</td>
-                  <td>{userInfo.parent.firstname}</td>
-                </tr>
-                <tr>
-                  <td>Утас</td>
-                  <td>{userInfo.parent.phone}</td>
-                </tr>
-                <tr>
-                  <td>Имэйл</td>
-                  <td>{userInfo.parent.email}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div className="divider" />
-      <div className="selector">
-        <div className="name">
-          <p>Сурагчийн мэдээлэл</p>
-        </div>
-        <div className="option">
-          <div className="option-container">
-            <table>
-              <tbody>
-                <tr>
-                  <td>Овог</td>
-                  <td>{userInfo.user.lastname}</td>
-                </tr>
-                <tr>
-                  <td>Нэр</td>
-                  <td>{userInfo.user.firstname}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div className="option grid col-2">
+          <Accordion style={{ width: "100%" }}>
+            <Accordion.Item value="parents">
+              <Accordion.Control>
+                Асран хамгаалагчийн мэдээлэл
+              </Accordion.Control>
+              <Accordion.Panel>
+                <div className="option-container padding-0">
+                  <table className="user-info-table">
+                    <tbody>
+                      <tr>
+                        <td>Овог</td>
+                        <td>{userInfo.parent.lastname}</td>
+                      </tr>
+                      <tr>
+                        <td>Нэр</td>
+                        <td>{userInfo.parent.firstname}</td>
+                      </tr>
+                      <tr>
+                        <td>Утас</td>
+                        <td>{userInfo.parent.phone}</td>
+                      </tr>
+                      <tr>
+                        <td>Имэйл</td>
+                        <td>{userInfo.parent.email}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
+
+          <Accordion style={{ width: "100%" }}>
+            <Accordion.Item value="student">
+              <Accordion.Control>Сурагчийн мэдээлэл</Accordion.Control>
+              <Accordion.Panel>
+                <div className="option-container">
+                  <table className="user-info-table">
+                    <tbody>
+                      <tr>
+                        <td>Овог</td>
+                        <td>{userInfo.user.lastname}</td>
+                      </tr>
+                      <tr>
+                        <td>Нэр</td>
+                        <td>{userInfo.user.firstname}</td>
+                      </tr>
+                      <tr>
+                        <td>Нэмэлт</td>
+                        <td>{userInfo.user.note}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </Accordion.Panel>
+            </Accordion.Item>
+          </Accordion>
         </div>
       </div>
       <div className="price-container">
         <p>
-          Захиалгын дугаар: <span>2511 1016</span>
+          Захиалгын дугаар
+          <br className="mo-br" /> <span>#2511 1016</span>
         </p>
-        <p>
-          Нийт: <span>{getSelectedGroup(group)}₮</span>
+        <p style={{ textAlign: "right" }}>
+          Нийт
+          <br className="mo-br" /> <span>{group.price.toLocaleString()}₮</span>
         </p>
       </div>
-      <div className="selector">
+      <div className="selector grid">
         <div className="name">
-          <p>НӨАТ-ын төрөл</p>
+          <p className="title">НӨАТ-ын төрөл</p>
         </div>
-        <div className="option grid">
+        <div className="option grid col-2">
           {recieptTypes.map((item) => (
             <Radio.Card
               radius="md"
@@ -199,9 +255,9 @@ export const PaymentInfo = ({
         </div>
       </div>
 
-      <div className="selector">
+      <div className="selector grid">
         <div className="name">
-          <p>Төлбөрийн хэрэгсэл</p>
+          <p className="title">Төлбөрийн хэрэгсэл</p>
         </div>
         <div className="option">
           {paymentMethods.map((item) => (
@@ -222,29 +278,52 @@ export const PaymentInfo = ({
               {paymentMethod === item.value && (
                 <>
                   {paymentMethod === "bank_account" ? (
-                    <div>
+                    <div className="bordered">
                       <Accordion
                         defaultValue={accounts[0].bank}
                         style={{ width: "100%" }}
                       >
                         {accounts.map((item) => (
                           <Accordion.Item key={item.bank} value={item.bank}>
-                            <Accordion.Control>{item.bank}</Accordion.Control>
+                            <Accordion.Control>
+                              <img
+                                src={item.image}
+                                alt=""
+                                className="logo-icon"
+                              />
+                              {item.bank}
+                            </Accordion.Control>
                             <Accordion.Panel>
                               <div className="option-container">
                                 <table className="payment-info-table">
                                   <tbody>
                                     <tr>
-                                      <td>Хүлээн авагч</td>
-                                      <td>{item.receiver}</td>
+                                      <td>
+                                        Хүлээн авагч <p>{item.receiver}</p>
+                                      </td>
+                                      <td>
+                                        <p>{item.receiver}</p>
+                                        <IconCopy />
+                                      </td>
                                     </tr>
                                     <tr>
-                                      <td>IBAN Дугаар</td>
-                                      <td>{item.accountNumber}</td>
+                                      <td>
+                                        IBAN Дугаар<p>{item.accountNumber}</p>
+                                      </td>
+                                      <td>
+                                        <p>{item.accountNumber}</p>
+                                        <IconCopy />
+                                      </td>
                                     </tr>
                                     <tr>
-                                      <td>Гүйлгээний утга</td>
-                                      <td>{item.transactionValue}</td>
+                                      <td>
+                                        Гүйлгээний утга
+                                        <p>{item.transactionValue}</p>
+                                      </td>
+                                      <td>
+                                        <p>{item.transactionValue}</p>
+                                        <IconCopy />
+                                      </td>
                                     </tr>
                                   </tbody>
                                 </table>
