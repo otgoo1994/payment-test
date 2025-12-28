@@ -599,6 +599,14 @@
   @include utils.mobile {
     @include utils.vw-convert-mobile(padding-top, 50px);
     @include utils.vw-convert-mobile(padding-bottom, 50px);
+
+    background: linear-gradient(
+      to bottom,
+      colors.$color-deep-blue 0%,
+      colors.$color-deep-blue 15%,
+      colors.$color-gray-200 15%,
+      colors.$color-gray-200 100%
+    );
   }
 
   &-container {
