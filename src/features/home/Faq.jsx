@@ -1,5 +1,5 @@
 import { useState } from "react";
-import basket from "@/assets/images/basket.jpg";
+import basket from "/public/images/basket.jpg";
 import { IconCirclePlus, IconCircleMinus } from "@tabler/icons-react";
 import { Accordion } from "@mantine/core";
 
