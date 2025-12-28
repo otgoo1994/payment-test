@@ -639,11 +639,11 @@
         }
 
         img {
-          @include utils.vw-convert-desktop(width, 75px);
-          height: auto;
+          @include utils.vw-convert-desktop(height, 98px);
+          width: auto;
 
           @include utils.mobile {
-            @include utils.vw-convert-mobile(width, 32px);
+            @include utils.vw-convert-mobile(height, 60px);
           }
         }
       }
