@@ -1,4 +1,4 @@
-import logo from "/public/images/cluby.png";
+import logo from "/images/cluby.png";
 import { Link } from "react-router-dom";
 
 export const Header = () => {

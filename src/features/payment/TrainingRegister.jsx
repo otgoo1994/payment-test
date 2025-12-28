@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Group, Radio, Text, Checkbox, Notification } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconArrowLeft } from "@tabler/icons-react";
-import Fire from "/public/images/Fire.png";
+import Fire from "/images/Fire.png";
 
 export const TrainingRegister = ({ onCallBack }) => {
   const [selectedType, setSelectedType] = useState(null);
@@ -25,17 +25,17 @@ export const TrainingRegister = ({ onCallBack }) => {
     {
       label: "Сагсан бөмбөг",
       value: "basketball",
-      image: "/public/images/basketball.png",
+      image: "/images/basketball.png",
     },
     {
       label: "Гар бөмбөг",
       value: "volleyball",
-      image: "/public/images/volleyball.png",
+      image: "/images/volleyball.png",
     },
     {
       label: "Хөл бөмбөг",
       value: "football",
-      image: "/public/images/football.png",
+      image: "/images/football.png",
     },
   ];
 

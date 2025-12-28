@@ -5,10 +5,10 @@ import { TrainingRegister } from "./TrainingRegister";
 import { UserRegister } from "./UserRegister";
 import { PaymentInfo } from "./PaymentInfo";
 import { SuccessPayment } from "./SuccessPayment";
-import BarcaLogo from "/public/images/barca_logo.png";
-import volleyball from "/public/images/volleyball_line.png";
-import basketball from "/public/images/basketball_line.png";
-import football from "/public/images/football_line.png";
+import BarcaLogo from "/images/barca_logo.png";
+import volleyball from "/images/volleyball_line.png";
+import basketball from "/images/basketball_line.png";
+import football from "/images/football_line.png";
 
 export const Payment = () => {
   const [active, setActive] = useState(0);

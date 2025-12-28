@@ -1,4 +1,4 @@
-import logo from "/public/images/logo.png";
+import logo from "/images/logo.png";
 import { IconBrandAppleFilled, IconBrandGooglePlay } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 

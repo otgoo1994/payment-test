@@ -1,9 +1,9 @@
 import { useState } from "react";
-import bg_poster from "/public/images/bg_poster.png";
-import basketball_team from "/public/images/basketball_team.jpg";
-import female_football from "/public/images/female_football.jpg";
-import volleyball_female from "/public/images/volleyball_female.jpg";
-import logo from "/public/images/logo.png";
+import bg_poster from "/images/bg_poster.png";
+import basketball_team from "/images/basketball_team.jpg";
+import female_football from "/images/female_football.jpg";
+import volleyball_female from "/images/volleyball_female.jpg";
+import logo from "/images/logo.png";
 import { Link } from "react-router-dom";
 import {
   IconPlus,

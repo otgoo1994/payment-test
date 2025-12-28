@@ -1,6 +1,6 @@
 import { useState } from "react";
-import kidspace from "/public/images/bg.png";
-import basketball from "/public/images/basketball_bg.jpg";
+import kidspace from "/images/bg.png";
+import basketball from "/images/basketball_bg.jpg";
 import {
   IconPlus,
   IconChevronLeft,
