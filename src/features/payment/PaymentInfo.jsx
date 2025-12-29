@@ -42,21 +42,21 @@ export const PaymentInfo = ({
       receiver: "Мультитехнологи",
       accountNumber: "77 0000 11 2205033971",
       transactionValue: "2511 1016",
-      image: "/src/assets/images/golomt_icon.png",
+      image: "/images/golomt_icon.png",
     },
     {
       bank: "Худалдаа хөгжлийн банк",
       receiver: "Мультитехнологи",
       accountNumber: "77 0000 11 2205033971",
       transactionValue: "2511 1016",
-      image: "/src/assets/images/tdb_icon.png",
+      image: "/images/tdb_icon.png",
     },
     {
       bank: "Хас банк",
       receiver: "Мультитехнологи",
       accountNumber: "77 0000 11 2205033971",
       transactionValue: "2511 1016",
-      image: "/src/assets/images/xacbank_icon.png",
+      image: "/images/xacbank_icon.png",
     },
   ];
 
@@ -168,7 +168,7 @@ export const PaymentInfo = ({
                 Асран хамгаалагчийн мэдээлэл
               </Accordion.Control>
               <Accordion.Panel>
-                <div className="option-container padding-0">
+                <div className="option-container padding-0 dropdown">
                   <table className="user-info-table">
                     <tbody>
                       <tr>
@@ -198,7 +198,7 @@ export const PaymentInfo = ({
             <Accordion.Item value="student">
               <Accordion.Control>Сурагчийн мэдээлэл</Accordion.Control>
               <Accordion.Panel>
-                <div className="option-container">
+                <div className="option-container dropdown">
                   <table className="user-info-table">
                     <tbody>
                       <tr>
@@ -260,6 +260,33 @@ export const PaymentInfo = ({
           <p className="title">Төлбөрийн хэрэгсэл</p>
         </div>
         <div className="option">
+          <Radio.Card
+            component="div"
+            radius="md"
+            value={"bank_apps"}
+            key={"bank_apps"}
+            checked={paymentMethod === "bank_apps"}
+            onClick={() => setPaymentMethod("bank_apps")}
+            className="bank-app-container"
+          >
+            <Group wrap="nowrap" align="flex-start">
+              <div>
+                <Text>Банкны апп-р төлөх</Text>
+              </div>
+              <Radio.Indicator />
+            </Group>
+
+            {paymentMethod === "bank_apps" && (
+              <div className="bordered bank-app-list">
+                {accounts.map((item) => (
+                  <div className="bank-item" key={`bank-app-${item.bank}`}>
+                    <img src={item.image} alt="" className="logo-icon" />
+                    {item.bank}
+                  </div>
+                ))}
+              </div>
+            )}
+          </Radio.Card>
           {paymentMethods.map((item) => (
             <Radio.Card
               component="div"

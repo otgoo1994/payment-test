@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Stepper, Group, Radio, Stack, Text } from "@mantine/core";
 import { PaymentCard } from "@/shared/components";
 import { TrainingRegister } from "./TrainingRegister";
@@ -9,6 +9,7 @@ import BarcaLogo from "/images/barca_logo.png";
 import volleyball from "/images/volleyball_line.png";
 import basketball from "/images/basketball_line.png";
 import football from "/images/football_line.png";
+import { IconStar } from "@tabler/icons-react";
 
 export const Payment = () => {
   const [active, setActive] = useState(0);
@@ -48,6 +49,13 @@ export const Payment = () => {
     nextStep();
   };
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [active]);
+
   return (
     <>
       <section className="payment">
@@ -61,8 +69,19 @@ export const Payment = () => {
             </div>
           </div>
           <div className="stepper-card">
-            <Stepper active={active}>
-              <Stepper.Step label="" description="Сургалтын бүртгэл">
+            <Stepper
+              active={active}
+              styles={{
+                steps: {
+                  display: active === 3 ? "none" : "flex",
+                },
+              }}
+            >
+              <Stepper.Step
+                label=""
+                description="Сургалтын бүртгэл"
+                completedIcon={<IconStar fill="#FFFFFF" />}
+              >
                 <PaymentCard
                   title="BARCELONA - MONGOLIA"
                   description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
@@ -72,7 +91,11 @@ export const Payment = () => {
                   />
                 </PaymentCard>
               </Stepper.Step>
-              <Stepper.Step label="" description="Хэрэглэгчийн бүртгэл">
+              <Stepper.Step
+                label=""
+                description="Хэрэглэгчийн бүртгэл"
+                completedIcon={<IconStar fill="#FFFFFF" />}
+              >
                 <PaymentCard
                   title="BARCELONA - MONGOLIA"
                   description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
@@ -85,7 +108,11 @@ export const Payment = () => {
                   />
                 </PaymentCard>
               </Stepper.Step>
-              <Stepper.Step label="" description="Төлбөр төлөлт">
+              <Stepper.Step
+                label=""
+                description="Төлбөр төлөлт"
+                completedIcon={<IconStar fill="#FFFFFF" />}
+              >
                 <PaymentCard
                   title="BARCELONA - MONGOLIA"
                   description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
@@ -104,14 +131,12 @@ export const Payment = () => {
                   title="BARCELONA - MONGOLIA"
                   description="Хөл бөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт"
                 >
-                  {/* <SuccessPayment
-                    schedules={[]}
-                    ageGroups={ageGroups}
-                    types={types}
+                  <SuccessPayment
                     schedule={selectedTime}
                     type={selectedType}
                     group={selectedAgeGroup}
-                  /> */}
+                    onCallBack={handlePaymentCallBack}
+                  />
                 </PaymentCard>
               </Stepper.Completed>
             </Stepper>

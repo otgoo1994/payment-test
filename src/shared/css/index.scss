@@ -587,11 +587,12 @@
   // background-color: colors.$color-gray-200;
   background: linear-gradient(
     to bottom,
-    colors.$color-deep-blue 0%,
-    colors.$color-deep-blue 30%,
-    colors.$color-gray-200 30%,
-    colors.$color-gray-200 100%
+    colors.$color-deep-blue 0vh,
+    colors.$color-deep-blue 40vh,
+    colors.$color-gray-200 40vh,
+    colors.$color-gray-200 100vh
   );
+
   min-height: 100vh;
   @include utils.vw-convert-desktop(padding-top, 50px);
   @include utils.vw-convert-desktop(padding-bottom, 50px);
@@ -602,10 +603,10 @@
 
     background: linear-gradient(
       to bottom,
-      colors.$color-deep-blue 0%,
-      colors.$color-deep-blue 15%,
-      colors.$color-gray-200 15%,
-      colors.$color-gray-200 100%
+      colors.$color-deep-blue 0vh,
+      colors.$color-deep-blue 30vh,
+      colors.$color-gray-200 30vh,
+      colors.$color-gray-200 100vh
     );
   }
 
@@ -622,11 +623,12 @@
       justify-content: space-between;
 
       .payment-card-header-logo {
-        @include utils.vw-convert-desktop(width, 280px);
-        height: auto;
+        @include utils.vw-convert-desktop(height, 98px);
+        width: auto;
 
         @include utils.mobile {
-          @include utils.vw-convert-mobile(width, 120px);
+          @include utils.vw-convert-mobile(height, 60px);
+          width: auto;
         }
       }
 
@@ -695,18 +697,16 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    @include utils.vw-convert-desktop(padding, 50px 0px);
     @include utils.vw-convert-desktop(gap, 6px);
     justify-content: center;
     align-items: center;
 
     @include utils.mobile {
-      @include utils.vw-convert-mobile(padding, 50px 0px);
       @include utils.vw-convert-mobile(gap, 6px);
     }
 
     .icon-container {
-      background-color: rgba($color: #5095d7, $alpha: 0.1);
+      background-color: colors.$color-gray-200;
       border-radius: 50%;
       @include utils.vw-convert-desktop(width, 100px);
       @include utils.vw-convert-desktop(margin-bottom, 40px);
@@ -728,7 +728,7 @@
 
     p {
       text-align: center;
-      color: colors.$color-blue;
+      color: colors.$color-gray-700;
     }
 
     .succeedTitle {
@@ -815,6 +815,7 @@
 
       &.col-3 {
         grid-template-columns: 1fr 1fr 1fr;
+        @include utils.vw-convert-desktop(gap, 20px);
 
         @include utils.mobile {
           grid-template-columns: 1fr;
@@ -833,7 +834,7 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      @include utils.vw-convert-desktop(gap, 10px);
+      @include utils.vw-convert-desktop(gap, 20px);
 
       .input-description {
         color: colors.$color-gray-cool;
@@ -847,8 +848,38 @@
         }
       }
 
+      .bank-app-container {
+        display: none;
+
+        @include utils.mobile {
+          display: block;
+        }
+      }
+
+      .bank-app-list {
+        display: flex;
+        flex-direction: column;
+        @include utils.vw-convert-mobile(gap, 15px);
+        @include utils.vw-convert-mobile(margin-top, 20px);
+
+        .bank-item {
+          display: flex;
+          width: 100%;
+          @include utils.vw-convert-mobile(gap, 10px);
+          @include utils.vw-convert-mobile(padding, 10px);
+          @include utils.vw-convert-mobile(border-radius, 15px);
+          @include utils.vw-convert-mobile(font-size, 18px);
+          border: 1px solid colors.$color-gray-300;
+          align-items: center;
+          img {
+            @include utils.vw-convert-mobile(width, 30px);
+            @include utils.vw-convert-mobile(height, 30px);
+          }
+        }
+      }
+
       @include utils.mobile {
-        @include utils.vw-convert-mobile(gap, 10px);
+        @include utils.vw-convert-mobile(gap, 20px);
       }
 
       .bordered {
@@ -939,11 +970,23 @@
           table.user-info-table {
             @include utils.vw-convert-desktop(font-size, 14px);
             width: 100%;
+            border-collapse: collapse;
 
             @include utils.mobile {
               @include utils.vw-convert-mobile(font-size, 18px);
             }
+
+            tr {
+              &:last-child {
+                td {
+                  border: none;
+                }
+              }
+            }
+
             td {
+              border-bottom: 1px solid colors.$color-gray-300;
+              @include utils.vw-convert-desktop(padding, 16px 0);
               &:nth-child(1) {
                 width: 30%;
                 color: colors.$color-gray-cool;
@@ -961,9 +1004,19 @@
       button,
       .mantine-RadioCard-card {
         @include utils.vw-convert-desktop(padding, 15px);
-        @include utils.vw-convert-desktop(border-radius, 15px);
+        @include utils.vw-convert-desktop(border-radius, 20px);
         background-color: colors.$color-gray-100;
         border: none;
+
+        &[data-active="true"] {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &.card-type {
+          @include utils.vw-convert-desktop(border-radius, 30px);
+          // background-color: yellow;
+        }
 
         @include utils.mobile {
           @include utils.vw-convert-mobile(padding, 15px);
@@ -975,7 +1028,7 @@
           font-weight: 400;
 
           @include utils.mobile {
-            @include utils.vw-convert-mobile(font-size, 14px);
+            @include utils.vw-convert-mobile(font-size, 18px);
           }
         }
 
@@ -983,6 +1036,7 @@
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          align-items: center;
           @include utils.vw-convert-desktop(margin-top, 14px);
 
           @include utils.mobile {
@@ -996,6 +1050,8 @@
 
         .mantine-RadioIndicator-indicator {
           @include utils.vw-convert-desktop(padding, 3px);
+          @include utils.vw-convert-desktop(width, 20px);
+          @include utils.vw-convert-desktop(height, 20px);
 
           @include utils.mobile {
             @include utils.vw-convert-mobile(padding, 5px);
@@ -1033,6 +1089,11 @@
 
         &.bordered {
           border: 1px solid colors.$color-gray-300;
+        }
+
+        &.dropdown {
+          @include utils.vw-convert-desktop(border-top-left-radius, 0);
+          @include utils.vw-convert-desktop(border-top-right-radius, 0);
         }
 
         .info {
@@ -1188,12 +1249,14 @@
       }
 
       .mantine-TextInput-input {
-        @include utils.vw-convert-desktop(border-radius, 18px);
-        @include utils.vw-convert-desktop(padding, 25px 20px);
+        @include utils.vw-convert-desktop(border-radius, 16px);
+        @include utils.vw-convert-desktop(padding, 21px 20px);
         @include utils.vw-convert-desktop(font-size, 14px);
+        @include utils.vw-convert-desktop(margin-top, 10px);
         font-family: "Geologica", sans-serif;
         background-color: colors.$color-gray-100;
         border-color: colors.$color-gray-200;
+        color: colors.$color-gray-700;
 
         &::placeholder {
           color: colors.$color-gray-cool;
@@ -1203,6 +1266,7 @@
           @include utils.vw-convert-mobile(border-radius, 18px);
           @include utils.vw-convert-mobile(padding, 25px 20px);
           @include utils.vw-convert-mobile(font-size, 18px);
+          @include utils.vw-convert-mobile(margin-top, 10px);
         }
       }
 
@@ -1211,6 +1275,16 @@
         display: flex;
         justify-content: center !important;
         align-items: center;
+
+        svg {
+          @include utils.vw-convert-desktop(width, 180px);
+          @include utils.vw-convert-desktop(height, 180px);
+
+          @include utils.mobile {
+            @include utils.vw-convert-mobile(width, 150px);
+            @include utils.vw-convert-mobile(height, 150px);
+          }
+        }
 
         @include utils.mobile {
           @include utils.vw-convert-mobile(padding, 50px);
@@ -1287,6 +1361,7 @@
       background-color: colors.$color-deep-blue;
       @include utils.vw-convert-desktop(padding, 15px 50px);
       @include utils.vw-convert-desktop(border-radius, 15px);
+      @include utils.vw-convert-desktop(font-size, 16px);
       border: none;
       color: colors.$color-white;
       cursor: pointer;
@@ -1294,6 +1369,7 @@
       @include utils.mobile {
         @include utils.vw-convert-mobile(padding, 15px 50px);
         @include utils.vw-convert-mobile(border-radius, 15px);
+        @include utils.vw-convert-desktop(font-size, 18px);
       }
 
       &.disabled {
@@ -1309,8 +1385,20 @@
       @include utils.vw-convert-desktop(border-radius, 15px);
       border: none;
       color: colors.$color-gray-cool;
+      justify-content: center;
+      align-items: center;
       display: flex;
       cursor: pointer;
+
+      svg {
+        @include utils.vw-convert-desktop(width, 20px);
+        @include utils.vw-convert-desktop(height, 20px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(width, 30px);
+          @include utils.vw-convert-mobile(height, 30px);
+        }
+      }
 
       @include utils.mobile {
         @include utils.vw-convert-mobile(padding, 15px 20px);
@@ -1377,101 +1465,26 @@
 }
 
 .modal {
-  position: fixed;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   background-color: #00000030;
-  display: none;
-
-  &.show {
-    display: block;
-  }
-
-  &-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    @include utils.vw-convert-desktop(padding, 20px 0);
-
-    @include utils.mobile {
-      @include utils.vw-convert-mobile(padding, 20px 0);
-    }
-  }
 
   &-content {
-    width: 40%;
+    width: 100%;
     height: 100%;
     margin: auto;
     background-color: white;
     display: flex;
     flex-direction: column;
-    @include utils.vw-convert-desktop(border-radius, 40px);
-    @include utils.vw-convert-desktop(padding, 0 40px);
 
     @include utils.mobile {
       width: 90%;
-      @include utils.vw-convert-mobile(border-radius, 40px);
-      @include utils.vw-convert-mobile(padding, 0 40px);
-    }
-  }
-
-  &-header {
-    @include utils.vw-convert-desktop(padding, 30px 0px);
-    @include utils.vw-convert-desktop(gap, 20px);
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid colors.$color-gray-300;
-
-    @include utils.mobile {
-      @include utils.vw-convert-mobile(padding, 30px 0px);
-      @include utils.vw-convert-mobile(gap, 20px);
-    }
-
-    &-logo {
-      @include utils.vw-convert-desktop(width, 50px);
-      @include utils.vw-convert-desktop(height, 50px);
-
-      @include utils.mobile {
-        @include utils.vw-convert-mobile(width, 50px);
-        @include utils.vw-convert-mobile(height, 50px);
-      }
-    }
-
-    &-title {
-      @include utils.vw-convert-desktop(font-size, 18px);
-      font-family: "GeologicaSemibold";
-      color: colors.$color-gray-700;
-
-      @include utils.mobile {
-        @include utils.vw-convert-mobile(font-size, 18px);
-      }
-    }
-
-    &-subtitle {
-      @include utils.vw-convert-desktop(font-size, 16px);
-      font-family: "GeologicaRegular";
-      color: colors.$color-gray-700;
-
-      @include utils.mobile {
-        @include utils.vw-convert-mobile(font-size, 16px);
-      }
     }
   }
 
   &-body {
     flex-grow: 1;
     overflow-y: auto;
-    @include utils.vw-convert-desktop(padding, 30px 0);
-    @include utils.vw-convert-desktop(padding-left, 30px);
-    @include utils.vw-convert-desktop(padding-right, 35px);
-
-    @include utils.mobile {
-      @include utils.vw-convert-mobile(padding, 30px 0);
-      @include utils.vw-convert-mobile(padding-left, 30px);
-      @include utils.vw-convert-mobile(padding-right, 35px);
-    }
 
     &-title {
       font-family: "GeologicaRegular";
@@ -1520,7 +1533,7 @@
     }
 
     button.continue {
-      background-color: colors.$color-blue;
+      background-color: colors.$color-deep-blue;
       @include utils.vw-convert-desktop(padding, 15px 50px);
       @include utils.vw-convert-desktop(border-radius, 15px);
       border: none;
@@ -1658,7 +1671,6 @@
 
     padding: 0;
     .time-container {
-      background-color: "yellow";
       display: "flex";
       height: 100%;
       @include utils.vw-convert-desktop(padding, 15px 0);
@@ -1741,12 +1753,21 @@
         color: colors.$color-white;
         border-color: colors.$color-deep-blue;
       }
+
+      svg {
+        @include utils.vw-convert-desktop(width, 14px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(width, 20px);
+        }
+      }
     }
   }
 
   div[data-active="true"] {
     background-color: colors.$color-deep-blue;
   }
+
   .mantine-Stepper-stepIcon {
     width: 100%;
     height: 100%;
@@ -1759,11 +1780,14 @@
   }
 
   .mantine-Stepper-stepDescription {
-    @include utils.vw-convert-desktop(font-size, 15px);
+    @include utils.vw-convert-desktop(font-size, 14px);
+    @include utils.vw-convert-desktop(line-height, 18px);
+    color: colors.$color-gray-700;
     text-align: center;
 
     @include utils.mobile {
       @include utils.vw-convert-mobile(font-size, 20px);
+      @include utils.vw-convert-mobile(line-height, 18px);
     }
   }
 
@@ -1777,6 +1801,44 @@
       @include utils.vw-convert-mobile(height, 5px);
       margin-top: 6%;
     }
+  }
+}
+
+.mantine-Stepper-root[data-completed="true"] {
+  .mantine-Stepper-steps {
+    display: none;
+  }
+}
+
+.mantine-Checkbox-root {
+  display: flex;
+  justify-content: center;
+  @include utils.vw-convert-desktop(width, 20px);
+  @include utils.vw-convert-desktop(height, 20px);
+
+  .mantine-Checkbox-body {
+    width: 100%;
+    height: 100%;
+
+    .mantine-Checkbox-inner {
+      width: 100%;
+      height: 100%;
+
+      .mantine-Checkbox-input {
+        width: 100%;
+        height: 100%;
+        @include utils.vw-convert-desktop(border-radius, 7px);
+
+        @include utils.mobile {
+          @include utils.vw-convert-mobile(border-radius, 7px);
+        }
+      }
+    }
+  }
+
+  @include utils.mobile {
+    @include utils.vw-convert-mobile(width, 30px);
+    @include utils.vw-convert-mobile(height, 30px);
   }
 }
 

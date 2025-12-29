@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Group, Radio, Text, Checkbox, Notification } from "@mantine/core";
 import { notifications } from "@mantine/notifications";
 import { IconArrowLeft } from "@tabler/icons-react";
@@ -113,6 +113,147 @@ export const TrainingRegister = ({ onCallBack }) => {
     setIsOpen(null);
   };
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [isOpen]);
+
+  if (isOpen === "policyModal") {
+    return (
+      <div className="modal">
+        <div className="modal-content">
+          <div className="modal-body">
+            <p className="modal-body-title">Сургалтын гэрээ</p>
+            <div className="contract-section">
+              <p className="contract-section-title">1. Гэрээний зорилго</p>
+              <div className="contract-section-content">
+                Энэхүү гэрээ нь хөлмбөмбөг, сагсан бөмбөг болон гар бөмбөгийн
+                мэргэжлийн сургалтанд хамрагдах нөхцөл, журам, талуудын эрх
+                үүргийг тодорхойлоход оршино.
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">2. Сургалтын төрлүүд</p>
+              <div className="contract-section-content">
+                Үйлчилгээ үзүүлэгч нь дараах төрлийн сургалтыг санал болгоно.
+                <ul>
+                  <li>Хөлбөмбөгийн сургалт</li>
+                  <li>Сагсанбөмбөгийн сургалт</li>
+                  <li>Гарбөмбөгийн сургалт</li>
+                </ul>
+                Сургалтын түвшин, үргэлжлэх хугацаа, хөтөлбөрийн дэлгэрэнгүйг
+                тусгай хавсралтаар тодорхойлно.
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">3. Сургалтын хугацаа</p>
+              <div className="contract-section-content">
+                <p>Сургалт дараах хугацаанд явагдана:</p>
+                <p>Эхлэх огноо: ______________</p>
+                <p>Дуусах огноо: ______________</p>
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">4. Төлбөрийн нөхцөл</p>
+              <div className="contract-section-content">
+                <p>Сургалтын нийт төлбөр: ______________ төгрөг.</p>
+                <p>
+                  Төлбөр төлөх хэлбэр: ______________ (нэг удаа / хэсэгчлэн /
+                  сар бүр)
+                </p>
+                <p>
+                  Төлбөрийг дараах данс руу шилжүүлнэ:
+                  ___________________________
+                </p>
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">5. Талуудын эрх, үүрэг</p>
+              <div className="contract-section-content">
+                5.1 Үйлчилгээ үзүүлэгчийн үүрэг:
+                <ul>
+                  <li>Чанартай, мэргэжлийн сургалтын үйлчилгээг үзүүлэх</li>
+                  <li>Аюулгүй байдлын шаардлага хангах</li>
+                  <li>Сургалтын хөтөлбөрийн дагуу тогтмол хичээл явуулах </li>
+                </ul>
+                5.2 Захиалагчийн үүрэг:
+                <ul>
+                  <li>Төлбөрийг хугацаанд нь төлөх</li>
+                  <li>Сургалтын дотоод журмыг мөрдөх</li>
+                  <li>
+                    Хувийн бэлтгэл, эрүүл мэндийн мэдээллийг үнэн зөв өгөх
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">6. Хариуцлага</p>
+              <div className="contract-section-content">
+                <ul>
+                  <li>
+                    Талууд гэрээний үүргээ биелүүлээгүй тохиолдолд Монгол Улсын
+                    хууль тогтоомжийн дагуу хариуцлага хүлээнэ.
+                  </li>
+                  <li>
+                    Биеийн гэмтэл, эрүүл мэндийн эрсдэлийн талаар үйлчилгээ
+                    үзүүлэгч анхан шатны аюулгүй байдлыг хангах үүрэгтэй бөгөөд
+                    сургалтад оролцогч өөрийн эрүүл мэндийн байдлыг хариуцна.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">7. Гэрээ цуцлах</p>
+              <div className="contract-section-content">
+                <ul>
+                  <li>Талууд харилцан зөвшилцөж гэрээг цуцалж болно.</li>
+                  <li>
+                    Захиалагч тал гэрээг хугацаанаас өмнө цуцлах тохиолдолд
+                    сургалтын төлбөр буцаан олголт нь дараах нөхцлөөр хийгдэнэ:
+                    ________________
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">8. Маргаан шийдвэрлэх</p>
+              <div className="contract-section-content">
+                Гэрээтэй холбоотой маргааныг талууд эхлээд харилцан ярилцаж
+                шийдвэрлэнэ. Хэрэв шийдвэрлэгдээгүй тохиолдолд холбогдох шүүхэд
+                хандана.
+              </div>
+            </div>
+            <div className="contract-section">
+              <p className="contract-section-title">9. Бусад нөхцөл</p>
+              <div className="contract-section-content">
+                <ul>
+                  <li>
+                    Гэрээний нэмэлт өөрчлөлтийг бичгээр хийж, талууд гарын үсэг
+                    зурсан тохиолдолд хүчин төгөлдөр болно.
+                  </li>
+                  <li>
+                    Гэрээ нь ___ хуудастай, хоёр хувь үйлдэгдэж, тус бүр нь ижил
+                    хүчинтэй.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button className="back" onClick={() => setIsOpen(null)}>
+              <IconArrowLeft />
+            </button>
+            <button onClick={handleConfirmTerms} className="continue">
+              Зөвшөөрөх
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="selector">
@@ -128,8 +269,8 @@ export const TrainingRegister = ({ onCallBack }) => {
               radius="md"
               value={item.value}
               key={item.value}
-              checked={selectedType === item.value}
               onClick={() => setSelectedType(item.value)}
+              className="card-type"
             >
               <Group wrap="nowrap" align="flex-start">
                 <div
@@ -144,7 +285,13 @@ export const TrainingRegister = ({ onCallBack }) => {
                   </div>
                   <div className="indicator-container">
                     <Text>{item.label}</Text>
-                    <Radio.Indicator />
+                    {/* <Radio.Indicator /> */}
+                    <Checkbox
+                      label=""
+                      checked={selectedType === item.value}
+                      color="#154284"
+                      onClick={() => setSelectedType(item.value)}
+                    />
                   </div>
                 </div>
               </Group>
@@ -234,11 +381,21 @@ export const TrainingRegister = ({ onCallBack }) => {
                           }}
                         >
                           <td rowSpan={2}>
-                            <Checkbox
-                              size="sm"
-                              color="#154284"
-                              checked={selectedTime === item.id}
-                            />
+                            <div
+                              style={{
+                                display: "flex",
+                                width: "100%",
+                                height: "100%",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Checkbox
+                                size="sm"
+                                color="#154284"
+                                checked={selectedTime === item.id}
+                              />
+                            </div>
                           </td>
                           {weekDays.map((day, index) => (
                             <td key={index}>
@@ -272,7 +429,17 @@ export const TrainingRegister = ({ onCallBack }) => {
                   <>
                     <tr className={`schedule-row`}>
                       <td rowSpan={2}>
-                        <Checkbox size="sm" color="#154284" disabled />
+                        <div
+                          style={{
+                            display: "flex",
+                            width: "100%",
+                            height: "100%",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Checkbox size="sm" color="#154284" disabled />
+                        </div>
                       </td>
                       {weekDays.map((day, index) => (
                         <td key={index}>
@@ -289,7 +456,7 @@ export const TrainingRegister = ({ onCallBack }) => {
             </table>
             {selectedType && selectedAgeGroup ? (
               <div className="schedule-table-mobile">
-                {schedules.map((item) => (
+                {schedules.map((item, index) => (
                   <div
                     className={`schedule-table-mobile-container ${
                       selectedTime === item.id && "selected"
@@ -297,6 +464,7 @@ export const TrainingRegister = ({ onCallBack }) => {
                     onClick={() => {
                       setSelectedTime(item.id);
                     }}
+                    key={`schedule-table-${index}`}
                   >
                     <Checkbox
                       size="sm"
@@ -306,7 +474,9 @@ export const TrainingRegister = ({ onCallBack }) => {
                     <div className="">
                       <p>
                         {item.days.map((day, index) => (
-                          <span>{index > 0 ? `, ${day}` : day}</span>
+                          <span key={`schedule-day-${index}`}>
+                            {index > 0 ? `, ${day}` : day}
+                          </span>
                         ))}
                         <span className="schedule">{item.schedule}</span>
                       </p>
@@ -362,151 +532,16 @@ export const TrainingRegister = ({ onCallBack }) => {
         </div>
       </div>
       <div className="payment-footer">
-        <button onClick={handleCallBack} className="continue">
+        <button
+          onClick={handleCallBack}
+          className={`continue ${
+            selectedType && selectedAgeGroup && termsChecked && selectedTime
+              ? ""
+              : "disabled"
+          }`}
+        >
           Үргэлжлүүлэх
         </button>
-      </div>
-
-      <div className={`modal ${isOpen === "policyModal" && "show"}`}>
-        <div className="modal-container">
-          <div className="modal-content">
-            <div className="modal-header">
-              <img src={Fire} alt="" className="modal-header-logo" />
-              <div>
-                <p className="modal-header-title">BARCELONA - MONGOLIA</p>
-                <p className="modal-header-subtitle">
-                  Хөлмбөмбөг, сагсан бөмбөг болон гар бөмбөгийн сургалт
-                </p>
-              </div>
-            </div>
-            <div className="modal-body">
-              <p className="modal-body-title">Сургалтын гэрээ</p>
-              <div className="contract-section">
-                <p className="contract-section-title">1. Гэрээний зорилго</p>
-                <div className="contract-section-content">
-                  Энэхүү гэрээ нь хөлмбөмбөг, сагсан бөмбөг болон гар бөмбөгийн
-                  мэргэжлийн сургалтанд хамрагдах нөхцөл, журам, талуудын эрх
-                  үүргийг тодорхойлоход оршино.
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">2. Сургалтын төрлүүд</p>
-                <div className="contract-section-content">
-                  Үйлчилгээ үзүүлэгч нь дараах төрлийн сургалтыг санал болгоно.
-                  <ul>
-                    <li>Хөлбөмбөгийн сургалт</li>
-                    <li>Сагсанбөмбөгийн сургалт</li>
-                    <li>Гарбөмбөгийн сургалт</li>
-                  </ul>
-                  Сургалтын түвшин, үргэлжлэх хугацаа, хөтөлбөрийн дэлгэрэнгүйг
-                  тусгай хавсралтаар тодорхойлно.
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">3. Сургалтын хугацаа</p>
-                <div className="contract-section-content">
-                  <p>Сургалт дараах хугацаанд явагдана:</p>
-                  <p>Эхлэх огноо: ______________</p>
-                  <p>Дуусах огноо: ______________</p>
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">4. Төлбөрийн нөхцөл</p>
-                <div className="contract-section-content">
-                  <p>Сургалтын нийт төлбөр: ______________ төгрөг.</p>
-                  <p>
-                    Төлбөр төлөх хэлбэр: ______________ (нэг удаа / хэсэгчлэн /
-                    сар бүр)
-                  </p>
-                  <p>
-                    Төлбөрийг дараах данс руу шилжүүлнэ:
-                    ___________________________
-                  </p>
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">5. Талуудын эрх, үүрэг</p>
-                <div className="contract-section-content">
-                  5.1 Үйлчилгээ үзүүлэгчийн үүрэг:
-                  <ul>
-                    <li>Чанартай, мэргэжлийн сургалтын үйлчилгээг үзүүлэх</li>
-                    <li>Аюулгүй байдлын шаардлага хангах</li>
-                    <li>Сургалтын хөтөлбөрийн дагуу тогтмол хичээл явуулах </li>
-                  </ul>
-                  5.2 Захиалагчийн үүрэг:
-                  <ul>
-                    <li>Төлбөрийг хугацаанд нь төлөх</li>
-                    <li>Сургалтын дотоод журмыг мөрдөх</li>
-                    <li>
-                      Хувийн бэлтгэл, эрүүл мэндийн мэдээллийг үнэн зөв өгөх
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">6. Хариуцлага</p>
-                <div className="contract-section-content">
-                  <ul>
-                    <li>
-                      Талууд гэрээний үүргээ биелүүлээгүй тохиолдолд Монгол
-                      Улсын хууль тогтоомжийн дагуу хариуцлага хүлээнэ.
-                    </li>
-                    <li>
-                      Биеийн гэмтэл, эрүүл мэндийн эрсдэлийн талаар үйлчилгээ
-                      үзүүлэгч анхан шатны аюулгүй байдлыг хангах үүрэгтэй
-                      бөгөөд сургалтад оролцогч өөрийн эрүүл мэндийн байдлыг
-                      хариуцна.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">7. Гэрээ цуцлах</p>
-                <div className="contract-section-content">
-                  <ul>
-                    <li>Талууд харилцан зөвшилцөж гэрээг цуцалж болно.</li>
-                    <li>
-                      Захиалагч тал гэрээг хугацаанаас өмнө цуцлах тохиолдолд
-                      сургалтын төлбөр буцаан олголт нь дараах нөхцлөөр
-                      хийгдэнэ: ________________
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">8. Маргаан шийдвэрлэх</p>
-                <div className="contract-section-content">
-                  Гэрээтэй холбоотой маргааныг талууд эхлээд харилцан ярилцаж
-                  шийдвэрлэнэ. Хэрэв шийдвэрлэгдээгүй тохиолдолд холбогдох
-                  шүүхэд хандана.
-                </div>
-              </div>
-              <div className="contract-section">
-                <p className="contract-section-title">9. Бусад нөхцөл</p>
-                <div className="contract-section-content">
-                  <ul>
-                    <li>
-                      Гэрээний нэмэлт өөрчлөлтийг бичгээр хийж, талууд гарын
-                      үсэг зурсан тохиолдолд хүчин төгөлдөр болно.
-                    </li>
-                    <li>
-                      Гэрээ нь ___ хуудастай, хоёр хувь үйлдэгдэж, тус бүр нь
-                      ижил хүчинтэй.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button className="back" onClick={() => setIsOpen(null)}>
-                <IconArrowLeft />
-              </button>
-              <button onClick={handleConfirmTerms} className="continue">
-                Зөвшөөрөх
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     </>
   );
